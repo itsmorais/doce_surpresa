@@ -12,12 +12,13 @@ export const CatalogoButton = styled.button`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
 
-    
+    >a{
+    text-decoration: none;
     font-family: 'DM Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 21px;
     line-height: 27px;
     text-align: center;
-    color: #FFFAFD;
+    color: #FFFAFD;}
 `
