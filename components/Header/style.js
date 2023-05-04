@@ -3,14 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.div`
     width: 100%;
     background-color: #0D1321;
-    height: 15rem;
+    height: 10rem;
 
 
     >h1{
         font-family: 'Dancing Script', cursive;
         font-style: normal;
         font-weight: 400;
-        margin-top: 9rem;
+        margin-top: 4rem;
         text-align: center;
         
         font-size: 3.4rem;
