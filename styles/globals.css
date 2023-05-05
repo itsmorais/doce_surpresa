@@ -13,6 +13,9 @@ main{
   flex: 1;
 
 }
+html{
+  min-height: 100vh;
+}
 
 body{
   background-color: #FFFAFD;

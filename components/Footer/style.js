@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const Rodape = styled.footer`
-  flex: 0;
-
+  flex-shrink: 0;
     width: 100%;
     height: 5rem;
     overflow: hidden;
