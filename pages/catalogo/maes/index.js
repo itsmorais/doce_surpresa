@@ -2,6 +2,7 @@ import Header from  '../../../components/Header'
 import CatalogoNome from '../../../components/CatalogoNome'
 import BoxCard from '../../../components/BoxCard'
 import Head from 'next/head'
+import  Rodape  from '../../../components/Footer'
 
 
 export default function Catalogo({data}) {
@@ -19,6 +20,7 @@ export default function Catalogo({data}) {
       <Header isActive={true} />
       <CatalogoNome nome={"Especial dia das mães!"}></CatalogoNome>
       <BoxCard maes={maes}></BoxCard>
+      <Rodape></Rodape>
       
 
     </>

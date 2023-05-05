@@ -1,8 +1,8 @@
 import Header from '../components/Header'
 import HomePage from '../components/HomePage'
 import Catalogo from '../components/Catalogo'
-import Footer from '../components/Footer'
 import Head from 'next/head'
+import Footer from '@/components/Footer'
 
 
 export default function Home() {
