@@ -52,6 +52,26 @@ export const Container = styled.div`
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
+
+            >div#ImageContainer {
+                position: relative;
+                width: 150px;
+                height: 150px;
+                overflow: hidden;
+                transition: transform 0.3s ease-in-out;
+
+                &:hover{
+                    transform: scale(1.2);
+                }
+
+                >img{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+            }
             >p{
                 font-family: 'DM Sans';
                 font-style: normal;

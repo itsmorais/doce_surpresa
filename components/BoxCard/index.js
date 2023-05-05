@@ -29,8 +29,9 @@ export default function BoxCard(){
             </div>
 
 <div id="Imagem-preco-botao">
-    <div id="imagem" style={{backgroundImage:'url(naoETodoMundo.jpeg)'}}></div>
+    <div id="ImageContainer">
     <Image src="/naoETodoMundo.jpeg" width={150} height={150} alt="Imagem da cesta"></Image>
+    </div>
     <p>R$130,00<span>+Frete</span></p>
     <Link href={"https://wa.me/5512996791297"} target="_blank">
     <button id="euQuero">Eu Quero!</button>
