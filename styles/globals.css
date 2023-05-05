@@ -9,10 +9,19 @@
 
 
 }
+main{
+  flex: 1;
+
+}
+
 body{
   background-color: #FFFAFD;
   color: #0D1321;
   -webkit-font-smoothing: antialiased;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
 }
 ::-webkit-scrollbar {
