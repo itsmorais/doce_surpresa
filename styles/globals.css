@@ -6,26 +6,12 @@
   overflow-x: hidden;
   scroll-behavior: smooth;
   font-size: 62.5%;
-
-
-}
-main{
-  flex: 1;
-
-}
-html{
-  min-height: 100vh;
 }
 
 body{
   background-color: #FFFAFD;
   color: #0D1321;
   -webkit-font-smoothing: antialiased;
-
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
 }
 ::-webkit-scrollbar {
   width: 5px;

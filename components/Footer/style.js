@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Rodape = styled.footer`
-  flex-shrink: 0;
-    width: 100%;
+
     height: 5rem;
-    overflow: hidden;
     gap: 2rem;
     display: flex;
     align-items: center;
@@ -21,9 +19,6 @@ export const Rodape = styled.footer`
       align-items: center;
       gap: 2.5rem;
 
-      >svg>path{
-        fill: white;
-      }
     }
 `
 
