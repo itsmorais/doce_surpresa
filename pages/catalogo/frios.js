@@ -16,7 +16,7 @@ export default function Catalogo({nome}) {
         <link rel="icon" href="/logo.svg" />
     
     </Head>
-      <Header/>
+      <Header isActive={true}/>
       <CatalogoNome nome={"Frios"}></CatalogoNome>
       
 

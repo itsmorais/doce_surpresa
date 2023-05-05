@@ -14,7 +14,7 @@ export default function Catalogo() {
     
         <link rel="icon" href="/logo.svg" />
     </Head>
-      <Header/>
+      <Header isActive={true} />
       <CatalogoNome nome={"Especial dia das mães"}></CatalogoNome>
       <BoxCard></BoxCard>
       

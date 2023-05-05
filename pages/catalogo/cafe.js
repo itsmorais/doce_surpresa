@@ -17,7 +17,7 @@ export default function Catalogo({nome}) {
     
     </Head>
 
-      <Header/>
+      <Header isActive={true} />
       <CatalogoNome nome={"Café da manhã"}></CatalogoNome>
       
 
