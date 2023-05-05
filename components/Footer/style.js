@@ -14,7 +14,7 @@ export const Rodape = styled.footer`
 
     background-color: rgba(13,19,33,0.92);
     color: white;
-    padding: 20px;
+    padding: 0 20px;
     text-align: center;
 
     >div#Social{
