@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 95%;
+    width: 100%;
     height: fit-content;
     padding: 5%;
 
@@ -10,7 +10,7 @@ export const Container = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
               0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-    margin: auto;
+    margin: 2rem auto;
 
     >h3{
     font-family: 'DM Sans';
@@ -32,7 +32,9 @@ export const Container = styled.div`
         margin-top: 1.3rem;
         gap: 4rem;
         
-        >div{
+        >div#Lista{
+            display: flex;
+            align-items: flex-start;
 
         >li{
             font-family: 'DM Sans';
@@ -40,7 +42,6 @@ export const Container = styled.div`
             font-weight: 700;
             font-size: 1.4rem;
             line-height: 1.8rem;
-            text-align: center;
 
             /* background */
 
@@ -51,12 +52,12 @@ export const Container = styled.div`
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
+            justify-content: center;
 
             >div#ImageContainer {
                 position: relative;
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
                 overflow: hidden;
                 transition: transform 0.3s ease-in-out;
 
@@ -79,6 +80,7 @@ export const Container = styled.div`
                 font-size: 2.1rem;
                 line-height: 2.7rem;
                 text-align: center;
+                margin-top: 1rem;
 
                 color: #FFFFFF;
             }
@@ -93,6 +95,8 @@ export const Container = styled.div`
                 background: #FFFAFD;
                 border-radius: 4px;
                 border: none;
+                margin-top: 1rem;
+                cursor: pointer;
 
 
                 font-family: 'DM Sans';
@@ -101,6 +105,11 @@ export const Container = styled.div`
                 font-size: 14px;
                 line-height: 18px;
                 color: #000000;
+
+                &:hover{
+                    background-color: #000000;
+                    color: #FFFAFD;
+                }
             }
         }
         

@@ -4,9 +4,11 @@ import BoxCard from '../../../components/BoxCard'
 import Head from 'next/head'
 
 
-export default function Catalogo() {
+export default function Catalogo({data}) {
+  const {maes} = data.cestas
   return (
     <>
+
       <Head>
     <title>Doce Surpresa Cestaria</title>
         <meta name="description" content="Por Selma Fernanda" />
@@ -15,12 +17,21 @@ export default function Catalogo() {
         <link rel="icon" href="/logo.svg" />
     </Head>
       <Header isActive={true} />
-      <CatalogoNome nome={"Especial dia das mães"}></CatalogoNome>
-      <BoxCard></BoxCard>
+      <CatalogoNome nome={"Especial dia das mães!"}></CatalogoNome>
+      <BoxCard maes={maes}></BoxCard>
       
 
     </>
   )
 }
 
-module.exports = Catalogo
+export async function getServerSideProps(){
+  const cestas = await fetch('http://localhost:3000/api/hello')
+  const data = await cestas.json()
+
+  return{
+    props: {data},
+  }
+
+
+}
