@@ -22,7 +22,7 @@ export default function Home() {
       <Catalogo text={"Bolos"} link={'/catalogo/bolos'} disable={true}></Catalogo>
       <Catalogo text={"Chocolates"} link={'/catalogo/chocolates'} disable={true}></Catalogo>
       <Catalogo text={"Petiscos e frios"} link={'/catalogo/frios'} disable={true}></Catalogo>
-      <Catalogo text={"Entre em contato"} link={"https://wa.me/5512981464120"}></Catalogo>
+      <Catalogo text={"Entre em contato"} link={"https://wa.me/5512991134425"}></Catalogo>
 
       <Footer></Footer>
     </>

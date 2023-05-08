@@ -28,7 +28,7 @@ export default function BoxCard({ maes }) {
                             </div>
                             {preco &&                             <p>R${preco},00 <span>+Frete</span></p>
 }
-                            <Link href={`https://wa.me/5512981464120?text=Olá%20,tenho%20interesse%20no%20box%20${boxTitle}%20de%20R$%20${preco || ""}`} target="_blank">
+                            <Link href={`https://wa.me/5512991134425?text=Olá%20,tenho%20interesse%20no%20box%20${boxTitle}%20de%20R$%20${preco || ""}`} target="_blank">
                                 <button id="euQuero">Eu Quero!</button>
                             </Link>
 
