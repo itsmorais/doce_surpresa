@@ -11,7 +11,7 @@ export default function Footer() {
              
                 <FooterContainer>
                 Doce Surpresa Cestaria &copy; Todos os direitos reservados <br></br>
-                <span style={{textAlign:"left"}}>by: Selma Fernanda </span>
+                <span style={{textAlign:"left"}}>by:Fernanda Santos </span>
                 </FooterContainer>
 
                
