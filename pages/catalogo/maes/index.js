@@ -27,7 +27,7 @@ export default function Catalogo({data}) {
   )
 }
 
-export async function getServerSideProps(){
+export async function getStaticProps(){
   const cestas = await fetch("https://www.docesurpresacestaria.com.br/api/hello")
   const data = await cestas.json()
 
