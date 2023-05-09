@@ -15,18 +15,16 @@ export default function Catalogo({data}) {
     <>
 
       <Head>
-    <title>Doce Surpresa Cestaria</title>
+        <title>Doce Surpresa Cestaria</title>
         <meta name="description" content="Por Selma Fernanda" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     
         <link rel="icon" href="/logo.svg" />
-    </Head>
+      </Head>
       <Header isActive={true} />
       <CatalogoNome nome={nome}></CatalogoNome>
       <BoxCard maes={cesta}></BoxCard>
       <Rodape></Rodape>
-      
-
     </>
   )
 }
@@ -47,7 +45,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const cestas = await fetch("http://www.localhost:3000/api/hello")
+  const cestas = await fetch("https://www.docesurpresacestaria.com.br/api/hello")
   const data = await cestas.json()
 
   const productType = params.productType;
