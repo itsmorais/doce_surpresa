@@ -15,24 +15,36 @@ export default function Catalogo({data}) {
     <>
 
       <Head>
-    <title>Doce Surpresa Cestaria</title>
+        <title>Doce Surpresa Cestaria</title>
         <meta name="description" content="Por Selma Fernanda" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     
         <link rel="icon" href="/logo.svg" />
-    </Head>
+      </Head>
       <Header isActive={true} />
       <CatalogoNome nome={nome}></CatalogoNome>
       <BoxCard maes={cesta}></BoxCard>
       <Rodape></Rodape>
-      
-
     </>
   )
 }
 
+export async function getStaticPaths() {
+  const cestas = await fetch("https://www.docesurpresacestaria.com.br/api/hello")
+  const data = await cestas.json()
 
-export async function getServerSideProps({ params }) {
+  // Generate paths for all product types
+  const paths = Object.keys(data.cestas).map((productType) => ({
+    params: { productType },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const cestas = await fetch("https://www.docesurpresacestaria.com.br/api/hello")
   const data = await cestas.json()
 
@@ -41,6 +53,6 @@ export async function getServerSideProps({ params }) {
   const cesta = data.cestas[productType];
 
   return {
-    props: { cesta},
+    props: { data, nome, cesta },
   };
 }
