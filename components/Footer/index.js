@@ -10,8 +10,10 @@ export default function Footer() {
             <Rodape>
 
                 <FooterContainer>
-                    Doce Surpresa Cestaria &copy; Todos os direitos reservados <br></br>
-                    <span style={{ textAlign: "left" }}>by:Fernanda Santos </span>
+
+                Doce Surpresa Cestaria &copy; Todos os direitos reservados <br></br>
+                <span style={{textAlign:"left"}}>by:Fernanda Santos </span>
+
                 </FooterContainer>
 
 
