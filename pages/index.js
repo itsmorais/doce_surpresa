@@ -17,11 +17,11 @@ export default function Home() {
     </Head>
       <Header />
       <HomePage></HomePage>
-      <Catalogo text={"Especial Dia das mães"} link={'/catalogo/maes'}></Catalogo>
-      <Catalogo text={"Café da manhã"} link={'/catalogo/cafe'} disable={true}></Catalogo>
-      <Catalogo text={"Bolos"} link={'/catalogo/bolos'} disable={true}></Catalogo>
-      <Catalogo text={"Chocolates"} link={'/catalogo/chocolates'} disable={true}></Catalogo>
-      <Catalogo text={"Petiscos e frios"} link={'/catalogo/frios'} disable={true}></Catalogo>
+      <Catalogo text={"Especial Dia das mães"} link={'/catalogo/Especial_Dia_Das_Mães'}></Catalogo>
+      <Catalogo text={"Café da manhã"} link={'/catalogo/Café_da_manhã'}></Catalogo>
+      <Catalogo text={"Bolos"} link={'/catalogo/Bolos'} disable={true}></Catalogo>
+      <Catalogo text={"Chocolates"} link={'/catalogo/Chocolates'} disable={true}></Catalogo>
+      <Catalogo text={"Petiscos e frios"} link={'/catalogo/Frios'} disable={true}></Catalogo>
       <Catalogo text={"Entre em contato"} link={"https://wa.me/5512991134425"}></Catalogo>
 
       <Footer></Footer>

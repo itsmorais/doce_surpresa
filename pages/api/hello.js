@@ -2,7 +2,7 @@
 
 export default function handler(req, res) {
   const cestas = {
-    maes:[
+    Especial_Dia_Das_Mães:[
       {boxTitle: "Você não é todo mundo",
       itens: ["Suco villa 300 ml","Café drip","Chá","Iorgute grego","Geléia","Doce de leite","mini torradas","Croissant","Mini pão frânces","Pães de queijo","Frios","Frutas","Bolo de coração red velvet com ninho","Caixa Personalizada com nome"],
       imageSrc:'/mae1.jpeg',
@@ -23,6 +23,24 @@ export default function handler(req, res) {
       itens: ["Balão de coração R$18,00","Balão bobo ball R$25,00","Caneca personalizada R$30,00","Flor kalanchoe no cachepô R$20,00","Porta Retreato R$18,00"],
       imageSrc:'/mae5.jpeg',
       preco:null}
+    ],
+    Café_da_manhã:[
+      {boxTitle: "Café P",
+      itens: ["Suco integral","Drip Coffe","Iogurte grego","Frutas variadas(5)","Geléia ou doce de leite","Pão Francês","Pães de queijo","Pão de leite","Caixa mdf decorada"],
+      imageSrc:'/cafe1.jpeg',
+      preco:130},
+      {boxTitle: "Café M",
+      itens: ["Suco integral","Drip Coffe","Iogurte grego","Frutas","Frios","Geléia ou doce de leite","Cookies","Pão Francês","Pães de queijo","Pão de leite","Croissant de presunto e queijo","Caixa mdf decorada"],
+      imageSrc:'/cafe2.jpeg',
+      preco:145},
+      {boxTitle: "Café G",
+      itens: ["Suco integral(2uni)","Drip Coffe","Iogurte grego","Frutas","Frios","Geléia","doce de leite","Cookies","Pão Francês","Pães de queijo","Pão de leite","Croissant de presunto e queijo","Croissant de chocolate","Bolo caseirinho","Brigadeiros gourmet(6uni)","Caixa mdf decorada"],
+      imageSrc:'/cafe3.jpeg',
+      preco:190},
+      {boxTitle: "Aniversário",
+      itens: ["Suco integral","Drip coffe","Iogurte grego","Frutas","Frios","Geléia","Doce de leite","Pão francês","Cookies","Pão de leite","Pães de queijo","Croissant de presunto e queijo","Croissant de chocolate","Bolo de aniversário","Brigadeiro gourmet(6uni)","Caixa mdf decorada"],
+      imageSrc:'/cafe4.jpeg',
+      preco:230},
     ]
   }
   res.status(200).json({ cestas})
