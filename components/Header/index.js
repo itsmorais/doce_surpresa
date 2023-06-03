@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function Header({isActive}){
     const router = useRouter();
     const handleClick = () => {
-        router.back()
+        router.push('/')
     }
 
     return(

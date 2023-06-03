@@ -8,7 +8,7 @@ export default function handler(req, res) {
       imageSrc:'/namo1.jpeg',
       preco:160},
       {boxTitle: "Por onde for, quero ser seu par - Frios",
-      itens: ["Suco villa ou vinho","Frutas frescas","Geléia","Pastinho de azeitona","Espetinho tomate cereja com azeitonas","Queijo(Gouda/provolone)","Charcutaria(Salame,lombo)","Torradas","Frutas secas","Chocolates","Caixa personalizada com nome da pessoa amada"],
+      itens: ["Suco villa ou vinho","Frutas frescas","Geléia","Pastinha de azeitonas","Queijo Gouda e provolone","Charcutaria Salame e lombo","Torradas","Frutas secas","Espetinho tomate cereja com azeitonas","Chocolates","Caixa personalizada com nome da pessoa amada"],
       imageSrc:'/namo2.jpeg',
       preco:150},
       {boxTitle: "Você me faz tão bem - Fondue",
