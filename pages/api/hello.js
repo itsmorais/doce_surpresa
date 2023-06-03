@@ -2,6 +2,28 @@
 
 export default function handler(req, res) {
   const cestas = {
+    Especial_Dia_Dos_Namorados:[
+      {boxTitle: "Meu riso é tão feliz contigo - Café",
+      itens: ["Suco villa piva","Café drip","Chá","Iorgute grego","Frutas","Geléia","Doce de leite","Frios","Pão de leite","Torradas","Pães de queijo","Pão frânces","Croissant simples","Croissant recheado","Bolo de coração red velvet com ninho","Caixa personalizada com nome da pessoa amada"],
+      imageSrc:'/namo1.jpeg',
+      preco:160},
+      {boxTitle: "Por onde for, quero ser seu par - Frios",
+      itens: ["Suco villa ou vinho","Frutas frescas","Geléia","Pastinho de azeitona","Espetinho tomate cereja com azeitonas","Queijo(Gouda/provolone)","Charcutaria(Salame,lombo)","Torradas","Frutas secas","Chocolates","Caixa personalizada com nome da pessoa amada"],
+      imageSrc:'/namo2.jpeg',
+      preco:150},
+      {boxTitle: "Você me faz tão bem - Fondue",
+      itens: ["Brigadeiro gourmet ou ganache de chocolate nobre ao leite(150g)","Uvas sem sementes","Morangos","Brownie","Marshmallow","Amandita","Caixa personalizada com nome da pessoa amada"],
+      imageSrc:'/namo3.jpeg',
+      preco:110},
+      {boxTitle: "Para nós todo amor do mundo - Chocolates",
+      itens: ["Chocolate ferrero rocher","Trufas ao leite","Trufas de cereja","Balão Personalizado","Caixa personalizada com nome da pessoa amada","Mensagem impressa"],
+      imageSrc:'/namo4.jpeg',
+      preco:120},
+      {boxTitle: "Mimos!",
+      itens: ["Balão de coração personalizado R$18,00","Balão bobo ball R$25,00","Foto polaroid com o código da músca do casal para acesso pelo Spotify R$20.00"],
+      imageSrc:'/namo5.jpeg',
+      preco:null}
+    ],
     Especial_Dia_Das_Mães:[
       {boxTitle: "Você não é todo mundo",
       itens: ["Suco villa 300 ml","Café drip","Chá","Iorgute grego","Geléia","Doce de leite","mini torradas","Croissant","Mini pão frânces","Pães de queijo","Frios","Frutas","Bolo de coração red velvet com ninho","Caixa Personalizada com nome"],
