@@ -7,7 +7,7 @@ export default function handler(req, res) {
       itens: ["Suco villa piva","Café drip","Chá","Iorgute grego","Frutas","Geléia","Doce de leite","Frios","Pão de leite","Torradas","Pães de queijo","Pão frânces","Croissant simples","Croissant recheado","Bolo de coração red velvet com ninho","Caixa personalizada com nome da pessoa amada"],
       imageSrc:'/namo1.jpeg',
       preco:160},
-      {boxTitle: "Meu coração é teu",
+      {boxTitle: "Meu coração é teu - Café",
       itens: ["Suco villa piva","Café drip","Chá","Frutas","Geléia","Frios","Pão de leite","Pães de queijo","Pão frânces","Croissant simples","Croissant recheado","Caixa cartonada em formato de coração"],
       imageSrc:'/namo6.jpeg',
       preco:130},
