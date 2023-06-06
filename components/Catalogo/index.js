@@ -8,9 +8,11 @@ export default function Catalogo({ text, link, disable }) {
         <Link href={'/'}>{text}</Link>
       </CatalogoButton>
     ) : (
-      <CatalogoButton href={link}>
-        <Link href={link}>{text}</Link>
+      <Link href={link} style={{textDecoration:'none'}}>
+      <CatalogoButton >
+        {text}
       </CatalogoButton>
+      </Link>
     )
   )
 }
