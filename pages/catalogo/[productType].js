@@ -5,12 +5,11 @@ import Head from 'next/head'
 import  Rodape  from '../../components/Footer'
 import { useRouter } from 'next/router'
 
+const baseUrl = "https://docesurpresa-backend.onrender.com";
 
-export default function Catalogo({data}) {
-  const router = useRouter();
-  const {productType} = router.query
-  const nome = productType.replace(/_/g, ' ');
-  const cesta = data.cestas[productType]
+export default function Catalogo({nome,data}) {
+
+
   return (
     <>
 
@@ -22,37 +21,32 @@ export default function Catalogo({data}) {
         <link rel="icon" href="/logo.svg" />
       </Head>
       <Header isActive={true} />
-      <CatalogoNome nome={nome}></CatalogoNome>
-      <BoxCard maes={cesta}></BoxCard>
+        <CatalogoNome nome={nome.titulo}></CatalogoNome>
+       <BoxCard dados={data}></BoxCard> 
       <Rodape></Rodape>
     </>
   )
 }
 
-export async function getStaticPaths() {
-  const cestas = await fetch("https://www.docesurpresacestaria.com.br/api/hello")
-  const data = await cestas.json()
+export async function getServerSideProps({query}){
+  const {productType} = query
 
-  // Generate paths for all product types
-  const paths = Object.keys(data.cestas).map((productType) => ({
-    params: { productType },
-  }));
+  const dados = await fetch(`${baseUrl}/box/${productType}`)
+  const catalogos = await dados.json();
 
-  return {
-    paths,
-    fallback: false,
-  };
-}
+  const nomeCatalogo = await fetch(`${baseUrl}/catalogo`);
+  let nomeJson = await nomeCatalogo.json();
 
-export async function getStaticProps({ params }) {
-  const cestas = await fetch("https://www.docesurpresacestaria.com.br/api/hello")
-  const data = await cestas.json()
+  nomeJson = nomeJson.filter((titulos) => titulos.id == productType);
 
-  const productType = params.productType;
-  const nome = productType.replace(/_/g, ' ');
-  const cesta = data.cestas[productType];
+  
 
-  return {
-    props: { data, nome, cesta },
-  };
+
+  return{
+    props:{
+      nome:nomeJson[0],
+      data:catalogos
+    }
+  }
+
 }

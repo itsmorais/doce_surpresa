@@ -2,33 +2,32 @@ import { Container } from "./style"
 import Image from "next/image"
 import Link from "next/link"
 
+const baseUrl = "https://docesurpresa-backend.onrender.com";
 
 
-export default function BoxCard({ maes }) {
-
-
+export default function BoxCard({ dados }) {
     return (
         <>
 
-            {maes.map(({ boxTitle, itens, imageSrc, preco }, index) => (
+            {dados.map(({ cesta_nome, preco, image_src,item, id }) => (
 
-                <Container key={index}>
-                    <h3>Box: {boxTitle}</h3>
+                <Container key={id}>
+                    <h3>Box: {cesta_nome}</h3>
                     <div id="Container">
 
                         <div id="Lista">
-                            {itens.map((item, index) => (
-                                <li key={index}>{item}</li>
+                            {item.map((itemUnidade, id) => (
+                                <li key={id}>{itemUnidade.item_nome}</li>
                             ))}
                         </div>
 
                         <div id="Imagem-preco-botao">
                             <div id="ImageContainer">
-                                <Image src={imageSrc} width={150} height={150} alt="Imagem da cesta" key={index}></Image>
+                                <Image src={`${baseUrl}/box/${image_src}`} width={150} height={150} alt="Imagem da cesta" key={id}></Image>
                             </div>
-                            {preco &&                             <p>R${preco},00 <span>+Frete</span></p>
+                            {preco &&                             <p>R${preco} <span>+Frete</span></p>
 }
-                            <Link href={`https://wa.me/5512991134425?text=Olá%20,tenho%20interesse%20no%20box%20${boxTitle}%20de%20R$%20${preco || ""}`} target="_blank">
+                            <Link href={`https://wa.me/5512991134425?text=Olá%20,tenho%20interesse%20no%20box%20${cesta_nome}%20de%20R$%20${preco || ""}`} target="_blank">
                                 <button id="euQuero">Eu Quero</button>
                             </Link>
 

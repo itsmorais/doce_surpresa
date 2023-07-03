@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
 const FormCatalogo = () => {
+    const baseUrl = "https://docesurpresa-backend.onrender.com";
+
     const [novoCatalogo, setNovoCatalogo] = useState("");
     const [catalogoCriado, setCatalogoCriado] = useState(0);
     const [nomeDoCatalogoCriado, setNomeDoCatalogoCriado] = useState('');
@@ -11,6 +13,7 @@ const FormCatalogo = () => {
     const [novoItem, setNovoItem] = useState("");
     const [itens, setItens] = useState([]);
 
+
     const handleInputChange = (event, setter) => {
         setter(event.target.value);
     };
@@ -18,7 +21,7 @@ const FormCatalogo = () => {
     const CriarCatalogo = async () => {
         if (novoCatalogo.trim() !== '') {
             try {
-                const response = await fetch("http://localhost:3001/catalogo", {
+                const response = await fetch(`${baseUrl}/catalogo`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -52,7 +55,7 @@ const FormCatalogo = () => {
             formData.append("catalogo_id", catalogoCriado);
 
             try {
-                const response = await fetch(`http://localhost:3001/box/${catalogoCriado}`, {
+                const response = await fetch(`${baseUrl}/box/${catalogoCriado}`, {
                     method: "POST",
                     body: formData,
                 });
@@ -75,7 +78,7 @@ const FormCatalogo = () => {
             alert("Adicione ao menos 1 item à cesta!");
         } else {
             try {
-                const newItem = await fetch(`http://localhost:3001/item/${cestaCriada}`, {
+                const newItem = await fetch(`${baseUrl}/item/${cestaCriada}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -86,7 +89,6 @@ const FormCatalogo = () => {
                 if (newItem.ok) {
                     setNovaCestaNome("");
                     setNovaCestaPreco(0);
-                    setItens([]);
                     alert(`Itens vinculados com sucesso à cesta: ${novaCestaNome}`);
                 } else {
                     throw new Error("Failed to create item");

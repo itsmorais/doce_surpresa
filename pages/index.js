@@ -2,19 +2,35 @@ import Header from '../components/Header'
 import HomePage from '../components/HomePage'
 import Catalogo from '../components/Catalogo'
 import Footer from '@/components/Footer'
+const baseUrl = "https://docesurpresa-backend.onrender.com";
 
 
-export default function Home() {
+export default function Home({ catalogos }) {
   return (
     <>
 
       <Header />
       <HomePage></HomePage>
-      <Catalogo text={"Especial dia dos namorados"} link={'/catalogo/Especial_Dia_Dos_Namorados'}></Catalogo>
-      <Catalogo text={"Café da manhã"} link={'/catalogo/Café_da_manhã'}></Catalogo>
+
+      {catalogos.map((catalogo) => (
+        <Catalogo text={catalogo.titulo} link={`/catalogo/${catalogo.id}`}></Catalogo>
+
+
+      ))}
       <Catalogo text={"Entre em contato"} link={"https://wa.me/5512991134425"}></Catalogo>
 
       <Footer></Footer>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const data = await fetch(`${baseUrl}/catalogo`)
+  const catalogos = await data.json()
+
+  return {
+    props: {
+      catalogos
+    }
+  }
 }
