@@ -37,6 +37,7 @@ export default function Home({ catalogos }) {
       {catalogosState.map((catalogo, index) => (
         <div key={index} className='d-flex p-2' style={{ textAlign: 'center', margin: 'auto', width: '25%' }}>
           <button
+            key={index}
             className="btn btn-danger btn-lg btn-block"
             onClick={() => handleDeleteCatalogo(catalogo.id)}
             style={{ textAlign: 'center', margin: 'auto', width: '100%' }}

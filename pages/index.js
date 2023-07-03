@@ -13,7 +13,7 @@ export default function Home({ catalogos }) {
       <HomePage></HomePage>
 
       {catalogos.map((catalogo) => (
-        <Catalogo text={catalogo.titulo} link={`/catalogo/${catalogo.id}`}></Catalogo>
+        <Catalogo key={catalogo.id} text={catalogo.titulo} link={`/catalogo/${catalogo.id}`}></Catalogo>
 
 
       ))}
