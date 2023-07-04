@@ -7,7 +7,7 @@ export const Container = styled.div`
     height: 10rem;
 
 
-    >h1{
+    h1{
         font-family: 'Dancing Script', cursive;
         font-style: normal;
         font-weight: 400;

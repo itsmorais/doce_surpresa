@@ -10,6 +10,7 @@ const FormCatalogo = () => {
     const [novaCestaPreco, setNovaCestaPreco] = useState(0);
     const [cestaImagem, setCestaImagem] = useState(null);
     const [cestaCriada, setCestaCriada] = useState(0);
+    const [nomeDaCestaCriada,setNomeDaCestaCriada] = useState('')
     const [novoItem, setNovoItem] = useState("");
     const [itens, setItens] = useState([]);
 
@@ -63,6 +64,7 @@ const FormCatalogo = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setCestaCriada(data.id);
+                    setNomeDaCestaCriada(novaCestaNome);
                     alert(`Cesta adicionada ao catalogo ${nomeDoCatalogoCriado}`);
                 } else {
                     throw new Error("Failed to create cesta");
@@ -177,7 +179,14 @@ const FormCatalogo = () => {
                             value="Adicionar cesta"
                             onClick={CriarCesta}
                         />
-                    </div>
+                            </div>
+                        {cestaCriada !== 0 && (
+                             <input
+                             type="button"
+                             className="btn btn-info mt-3"
+                             value={`Você está adicionando itens a cesta: ${nomeDaCestaCriada}`}
+                         />
+                        )}
                 </>
             )}
             {cestaCriada !== 0 && (
