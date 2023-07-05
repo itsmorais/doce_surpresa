@@ -7,10 +7,10 @@ export default function Home() {
     return (
         <>
             <Header />
-            <h1 style={{ fontSize: '31px', textAlign: 'center',marginTop:'5rem'}}>Bem vinda, Selma Fernanda</h1>
+            <h1 style={{ fontSize: '31px', textAlign: 'center', marginTop: '5rem' }}>Bem vinda, Selma Fernanda</h1>
 
             <Botao text={"Adicionar Catalogo"} link={'novo'}></Botao>
-           
+            <Botao text={"Editar Catalogo"} link={"editar"}></Botao>
             <Botao text={"Excluir Catalogo"} link={'excluir'}></Botao>
             <Footer></Footer>
         </>

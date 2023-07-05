@@ -1,36 +1,23 @@
 import Header from '../components/Header'
 import { useState } from 'react'
+import FormEditaCatalogo from '@/components/FormEditaCatalogo';
+import FormEditaCestas from '@/components/FormEditaCesta';
 
 
 export default function Home({ catalogos }) {
   const baseUrl = "https://docesurpresa-backend.onrender.com";
 
-  const [catalogosState, setCatalogoState] = useState(catalogos)
+  const [catalogosState, setCatalogoState] = useState(catalogos);
+  const [catalogoEscolido,setCatalogoEscolido] = useState();
 
 
-  const handleDeleteCatalogo = async (id) => {
-    const certeza = confirm(`Deseja excluir?`)
 
-    if (certeza) {
-      try {
-        await fetch(`${baseUrl}/catalogo/${id}`, {
-          method: 'DELETE'
-        })
-        alert`Catalogo excluído`
-        setCatalogoState(catalogosState.filter((catalogo) => catalogo.id != id))
-
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    else { return }
-  }
   return (
     <>
 
       <Header />
       <div className='container'>
-        <h2 style={{ textAlign: 'center' }} className="fst-bold mt-5">Clique sobre um catalogo para excluir! </h2>
+        <h2 style={{ textAlign: 'center' }} className="fst-bold mt-5">Clique sobre um catalogo para Edita-lo! </h2>
       </div>
 
 
@@ -38,8 +25,8 @@ export default function Home({ catalogos }) {
         <div key={index} className='d-flex p-2' style={{ textAlign: 'center', margin: 'auto', width: '25%' }}>
           <button
             key={index}
-            className="btn btn-danger btn-lg btn-block"
-            onClick={() => handleDeleteCatalogo(catalogo.id)}
+            className="btn btn-primary btn-lg btn-block"
+            onClick={() => setCatalogoEscolido(catalogo)}
             style={{ textAlign: 'center', margin: 'auto', width: '100%' }}
           >
             {catalogo.titulo}
@@ -49,9 +36,22 @@ export default function Home({ catalogos }) {
       ))}
 
 
+  
+        {catalogoEscolido && (
+          <>
+          <FormEditaCatalogo catalogo={catalogoEscolido} ></FormEditaCatalogo>
+          <FormEditaCestas catalogos={catalogoEscolido}></FormEditaCestas>
+          </>
+        )}
+        
+       
 
     </>
+
+    
+
   )
+
 }
 
 
