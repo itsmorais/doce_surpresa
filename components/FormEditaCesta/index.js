@@ -14,8 +14,8 @@ const FormEditaCestas = ({ catalogos }) => {
   const [novoItem, setNovoItem] = useState("");
   const [itens, setItens] = useState([]);
 
-  useEffect( () => {
-     obterCestas()
+  useEffect(() => {
+    obterCestas()
   }, [catalogos])
 
   const obterCestas = async () => {
@@ -25,12 +25,21 @@ const FormEditaCestas = ({ catalogos }) => {
 
   }
 
+  const DeletarItem = async () => {
+    try {
+      await fetch(`${baseUrl}/item/${cestaCriada}`, {
+        method: 'DELETE',
+      });
+    } catch (error) { console.log(error) }
+  }
 
   const AtribuirItem = async () => {
+
     if (itens.length === 0 || itens[0] === '') {
       alert("Adicione ao menos 1 item à cesta!");
     } else {
       try {
+        await DeletarItem();
         const newItem = await fetch(`${baseUrl}/item/${cestaCriada}`, {
           method: 'POST',
           headers: {
@@ -40,9 +49,8 @@ const FormEditaCestas = ({ catalogos }) => {
         });
 
         if (newItem.ok) {
-          setNovaCestaNome("");
-          setNovaCestaPreco(0);
           alert(`Itens vinculados com sucesso à cesta: ${novaCestaNome}`);
+          await obterCestas()
         } else {
           throw new Error("Failed to create item");
         }
@@ -57,8 +65,10 @@ const FormEditaCestas = ({ catalogos }) => {
   };
 
   const handleItemChange = (index, value) => {
+    console.log(value)
     const updatedItems = [...itens];
     updatedItems[index] = value;
+    console.log(updatedItems)
     setItens(updatedItems);
   };
 
@@ -68,11 +78,20 @@ const FormEditaCestas = ({ catalogos }) => {
     setItens(updatedItems);
   };
 
-  const handleEditCesta = async(cesta)=>{
-    setCestaCriada(cesta)
-    setNovaCestaNome(cesta.cesta_nome)
-    setNovaCestaPreco(cesta.preco)
-    setItens([...cesta.item])
+  const handleEditCesta = async ({ id, cesta_nome, preco, item }) => {
+    setCestaCriada(id)
+    setNovaCestaNome(cesta_nome)
+    setNovaCestaPreco(preco)
+    handleOldItens([...item])
+
+  }
+
+  const handleOldItens = (item) => {
+    let oldItems = []
+    item.map(({ item_nome }) => {
+      oldItems.push(item_nome);
+    })
+    setItens([...oldItems]);
   }
 
   return (
@@ -91,14 +110,14 @@ const FormEditaCestas = ({ catalogos }) => {
         </div>
 
       ))}
-   {cestaCriada && (
+      {cestaCriada && (
         <>
           <div className="form-group mt-2">
             <label style={{ fontSize: '2rem' }}>Nome da Cesta:</label>
             <input
               type="text"
               className="form-control"
-              value={novaCestaNome}
+              value={novaCestaNome || ''}
               onChange={(e) => setNovaCestaNome(e.target.value)}
             />
           </div>
@@ -118,22 +137,21 @@ const FormEditaCestas = ({ catalogos }) => {
                 type="number"
                 className="form-control"
                 step="0.01"
-                value={novaCestaPreco}
-                onChange={(e) =>  setNovaCestaPreco(e.target.value)}
+                value={novaCestaPreco || 0}
+                onChange={(e) => setNovaCestaPreco(e.target.value)}
               />
             </div>
             <input
               type="button"
               className="btn btn-primary mt-3"
               value="Atualizar Cesta"
-              //onClick={CriarCesta}
             />
           </div>
           {cestaCriada !== 0 && (
             <input
               type="button"
               className="btn btn-info mt-3"
-              value={`Você está Atualizando os itens da cesta: ${novaCestaNome}`}
+              value={`Você está Atualizando os itens da cesta: ${novaCestaNome || ''}`}
             />
           )}
         </>
@@ -148,7 +166,7 @@ const FormEditaCestas = ({ catalogos }) => {
                     className="form-control"
                     type="text"
                     placeholder={`Novo item da cesta: ${novaCestaNome}`}
-                    value={item.item_nome}
+                    value={item}
                     onChange={(e) => handleItemChange(index, e.target.value)}
                   />
                   <button
@@ -169,10 +187,10 @@ const FormEditaCestas = ({ catalogos }) => {
           </div>
         </>
       )}
- 
 
 
-    
+
+
     </>
 
 
