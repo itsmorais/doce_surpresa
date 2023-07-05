@@ -6,6 +6,8 @@ import Botao from '@/components/Botao'
 export default function Home() {
     return (
         <>
+            <title>Doce Surpresa Cestaria</title>
+
             <Header />
             <h1 style={{ fontSize: '31px', textAlign: 'center', marginTop: '5rem' }}>Bem vinda, Selma Fernanda</h1>
 

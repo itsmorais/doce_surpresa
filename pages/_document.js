@@ -3,7 +3,6 @@ export default function Document() {
   return (
     <Html lang="pt-br">
       <Head>
-        <title>Doce Surpresa Cestaria</title>
         <meta name="description" content="Por Selma Fernanda" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.png" />

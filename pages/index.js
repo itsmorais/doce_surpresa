@@ -8,6 +8,7 @@ const baseUrl = "https://docesurpresa-backend.onrender.com";
 export default function Home({ catalogos }) {
   return (
     <>
+      <title>Doce Surpresa Cestaria</title>
 
       <Header />
       <HomePage></HomePage>

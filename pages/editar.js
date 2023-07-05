@@ -8,12 +8,14 @@ export default function Home({ catalogos }) {
   const baseUrl = "https://docesurpresa-backend.onrender.com";
 
   const [catalogosState, setCatalogoState] = useState(catalogos);
-  const [catalogoEscolido,setCatalogoEscolido] = useState();
+  const [catalogoEscolido, setCatalogoEscolido] = useState();
 
 
 
   return (
     <>
+      <title>Doce Surpresa Cestaria</title>
+
 
       <Header />
       <div className='container'>
@@ -36,19 +38,19 @@ export default function Home({ catalogos }) {
       ))}
 
 
-  
-        {catalogoEscolido && (
-          <>
+
+      {catalogoEscolido && (
+        <>
           <FormEditaCatalogo catalogo={catalogoEscolido} ></FormEditaCatalogo>
           <FormEditaCestas catalogos={catalogoEscolido}></FormEditaCestas>
-          </>
-        )}
-        
-       
+        </>
+      )}
+
+
 
     </>
 
-    
+
 
   )
 

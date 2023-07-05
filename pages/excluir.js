@@ -1,7 +1,6 @@
 import Header from '../components/Header'
 import { useState } from 'react'
 
-
 export default function Home({ catalogos }) {
   const baseUrl = "https://docesurpresa-backend.onrender.com";
 
@@ -27,12 +26,12 @@ export default function Home({ catalogos }) {
   }
   return (
     <>
-
+      <title>Doce Surpresa Cestaria</title>
       <Header />
+
       <div className='container'>
         <h2 style={{ textAlign: 'center' }} className="fst-bold mt-5">Clique sobre um catalogo para excluir! </h2>
       </div>
-
 
       {catalogosState.map((catalogo, index) => (
         <div key={index} className='d-flex p-2' style={{ textAlign: 'center', margin: 'auto', width: '25%' }}>
@@ -47,13 +46,9 @@ export default function Home({ catalogos }) {
         </div>
 
       ))}
-
-
-
     </>
   )
 }
-
 
 export async function getServerSideProps() {
   const baseUrl = "https://docesurpresa-backend.onrender.com";

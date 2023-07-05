@@ -25,6 +25,31 @@ const FormEditaCestas = ({ catalogos }) => {
 
   }
 
+
+  const AtualizarCesta = async () => {
+
+    const formData = new FormData();
+    formData.append("cesta_nome", novaCestaNome);
+    formData.append("preco", novaCestaPreco);
+    formData.append("foto", cestaImagem);
+    formData.append("catalogo_id", catalogos.id);
+
+    try {
+      const response = await fetch(`${baseUrl}/box/${cestaCriada}`, {
+        method: "PUT",
+        body: formData,
+      });
+
+      alert(`Cesta atualizada com sucesso!`);
+      await obterCestas();
+
+    } catch (error) {
+      console.error(error);
+    }
+
+  };
+
+
   const DeletarItem = async () => {
     try {
       await fetch(`${baseUrl}/item/${cestaCriada}`, {
@@ -96,6 +121,8 @@ const FormEditaCestas = ({ catalogos }) => {
 
   return (
     <>
+      <title>Doce Surpresa Cestaria</title>
+
       <h4 style={{ textAlign: 'center', marginBottom: '2rem' }}>Selecione uma cesta para editar</h4>
       {cestas.map((cesta, index) => (
         <div key={index} className='d-flex p-2' style={{ textAlign: 'center', margin: 'auto', width: '25%' }}>
@@ -143,8 +170,9 @@ const FormEditaCestas = ({ catalogos }) => {
             </div>
             <input
               type="button"
-              className="btn btn-primary mt-3"
+              className="btn btn-success mt-3"
               value="Atualizar Cesta"
+              onClick={AtualizarCesta}
             />
           </div>
           {cestaCriada !== 0 && (

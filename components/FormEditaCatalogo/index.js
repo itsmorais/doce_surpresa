@@ -14,7 +14,21 @@ const FormEditaCatalogo = ({ catalogo }) => {
   const [novoItem, setNovoItem] = useState("");
   const [itens, setItens] = useState([]);
 
-
+  const editaCatalogoNome = async () => {
+    if (novoCatalogo != '') {
+      try {
+        await fetch(`${baseUrl}/catalogo/${catalogoCriado}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ titulo:novoCatalogo }),
+        });
+        alert`Nome do catalogo atualizado com sucesso!`
+        
+      } catch (error) { console.log(error) }
+    }
+  }
   return (
     <div className="container">
       <div className="form-group">
@@ -29,7 +43,7 @@ const FormEditaCatalogo = ({ catalogo }) => {
           type="button"
           className="btn btn-warning mt-3"
           value="Atualizar nome do catalogo"
-        //onClick={CriarCatalogo}
+          onClick={editaCatalogoNome}
         />
 
       </div>
