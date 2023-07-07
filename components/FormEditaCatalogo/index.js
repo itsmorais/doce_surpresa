@@ -22,10 +22,10 @@ const FormEditaCatalogo = ({ catalogo }) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ titulo:novoCatalogo }),
+          body: JSON.stringify({ titulo: novoCatalogo }),
         });
         alert`Nome do catalogo atualizado com sucesso!`
-        
+
       } catch (error) { console.log(error) }
     }
   }
@@ -34,6 +34,7 @@ const FormEditaCatalogo = ({ catalogo }) => {
       <div className="form-group">
         <label style={{ fontSize: '2rem' }}>Editar nome do catalogo:{catalogo.titulo}</label>
         <input
+          style={{ fontSize: '15px' }}
           type="text"
           className="form-control"
           value={novoCatalogo}

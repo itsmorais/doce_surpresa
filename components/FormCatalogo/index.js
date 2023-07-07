@@ -10,7 +10,7 @@ const FormCatalogo = () => {
     const [novaCestaPreco, setNovaCestaPreco] = useState(0);
     const [cestaImagem, setCestaImagem] = useState(null);
     const [cestaCriada, setCestaCriada] = useState(0);
-    const [nomeDaCestaCriada,setNomeDaCestaCriada] = useState('')
+    const [nomeDaCestaCriada, setNomeDaCestaCriada] = useState('')
     const [novoItem, setNovoItem] = useState("");
     const [itens, setItens] = useState([]);
 
@@ -123,6 +123,8 @@ const FormCatalogo = () => {
             <div className="form-group">
                 <label style={{ fontSize: '2rem' }}>Nome do catalogo:</label>
                 <input
+                    style={{ fontSize: '15px' }}
+
                     type="text"
                     className="form-control"
                     value={novoCatalogo}
@@ -130,14 +132,14 @@ const FormCatalogo = () => {
                 />
                 <input
                     type="button"
-                    className="btn btn-primary mt-3"
+                    className="btn btn-primary btn-lg mt-3"
                     value="Criar Catalogo"
                     onClick={CriarCatalogo}
                 />
                 {catalogoCriado && (
                     <input
                         type="button"
-                        className="btn btn-info mt-3"
+                        className="btn btn-info btn-lg mt-3"
                         value={`Você está adicionando cestas ao catalogo: ${nomeDoCatalogoCriado}`}
                     />
                 )}
@@ -147,6 +149,8 @@ const FormCatalogo = () => {
                     <div className="form-group mt-2">
                         <label style={{ fontSize: '2rem' }}>Nome da Cesta:</label>
                         <input
+                            style={{ fontSize: '15px' }}
+
                             type="text"
                             className="form-control"
                             value={novaCestaNome}
@@ -156,6 +160,8 @@ const FormCatalogo = () => {
                     <div className="form-group mt-2">
                         <label style={{ fontSize: '2rem' }}>Foto da cesta:</label>
                         <input
+                            style={{ fontSize: '15px' }}
+
                             className="form-control"
                             type="file"
                             name="foto"
@@ -166,6 +172,8 @@ const FormCatalogo = () => {
                         <div className="form-group">
                             <label style={{ fontSize: '2rem' }}>Preço R$:</label>
                             <input
+                                style={{ fontSize: '15px' }}
+
                                 type="number"
                                 className="form-control"
                                 step="0.01"
@@ -175,18 +183,18 @@ const FormCatalogo = () => {
                         </div>
                         <input
                             type="button"
-                            className="btn btn-primary mt-3"
+                            className="btn btn-primary mt-3 btn-lg"
                             value="Adicionar cesta"
                             onClick={CriarCesta}
                         />
-                            </div>
-                        {cestaCriada !== 0 && (
-                             <input
-                             type="button"
-                             className="btn btn-info mt-3"
-                             value={`Você está adicionando itens a cesta: ${nomeDaCestaCriada}`}
-                         />
-                        )}
+                    </div>
+                    {cestaCriada !== 0 && (
+                        <input
+                            type="button"
+                            className="btn btn-info mt-3 btn-lg"
+                            value={`Você está adicionando itens a cesta: ${nomeDaCestaCriada}`}
+                        />
+                    )}
                 </>
             )}
             {cestaCriada !== 0 && (
@@ -196,6 +204,8 @@ const FormCatalogo = () => {
                             {itens.map((item, index) => (
                                 <div key={index} className="input-group mb-3">
                                     <input
+                                        style={{ fontSize: '15px' }}
+
                                         className="form-control"
                                         type="text"
                                         placeholder={`Novo item da cesta: ${novaCestaNome}`}
@@ -203,7 +213,7 @@ const FormCatalogo = () => {
                                         onChange={(e) => handleItemChange(index, e.target.value)}
                                     />
                                     <button
-                                        className="btn btn-outline-danger"
+                                        className="btn btn-outline-danger btn-lg"
                                         onClick={() => handleDeleteItem(index)}
                                     >
                                         Excluir
@@ -211,10 +221,10 @@ const FormCatalogo = () => {
                                 </div>
                             ))}
                         </div>
-                        <button className="btn btn-primary mb-5" onClick={addNewItemField}>
+                        <button className="btn btn-primary mb-5 btn-lg" onClick={addNewItemField}>
                             Adicionar item
                         </button>
-                        <button className="btn btn-success mb-5" onClick={AtribuirItem}>
+                        <button className="btn btn-success mb-5 btn-lg" onClick={AtribuirItem}>
                             Incluir Itens
                         </button>
                     </div>

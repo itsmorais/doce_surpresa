@@ -19,7 +19,6 @@ export default function Home({ catalogos }) {
 
       ))}
       <Catalogo text={"Entre em contato"} link={"https://wa.me/5512991134425"}></Catalogo>
-
       <Footer></Footer>
     </>
   )

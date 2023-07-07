@@ -13,6 +13,7 @@ body{
   color: #0D1321;
   -webkit-font-smoothing: antialiased;
 }
+
 ::-webkit-scrollbar {
   width: 5px;
   border-radius: 10px;

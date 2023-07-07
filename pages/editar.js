@@ -18,6 +18,7 @@ export default function Home({ catalogos }) {
 
 
       <Header />
+      
       <div className='container'>
         <h2 style={{ textAlign: 'center' }} className="fst-bold mt-5">Clique sobre um catalogo para Edita-lo! </h2>
       </div>
@@ -27,7 +28,7 @@ export default function Home({ catalogos }) {
         <div key={index} className='d-flex p-2' style={{ textAlign: 'center', margin: 'auto', width: '25%' }}>
           <button
             key={index}
-            className="btn btn-primary btn-lg btn-block"
+            className="btn btn-primary btn-lg"
             onClick={() => setCatalogoEscolido(catalogo)}
             style={{ textAlign: 'center', margin: 'auto', width: '100%' }}
           >

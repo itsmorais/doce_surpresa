@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {BsArrowLeft} from 'react-icons/bs'
+import { BsArrowLeft } from 'react-icons/bs'
 
 export const Container = styled.div`
     width: 100%;
@@ -28,4 +28,5 @@ width: 7%;
 height: 5%;
 color: white;
 background-color: transparent;
+cursor: pointer;
 `;

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 100%;
+
+    width: 98%;
     height: fit-content;
     padding: 5%;
 
@@ -117,4 +118,20 @@ export const Container = styled.div`
         }
 
 
+`
+
+export const Web = styled.div`
+    @media (min-width:900px){
+        margin: auto;
+        display: grid;
+        grid-template-columns: 500px 500px;
+        gap: 1rem;
+        justify-content: space-evenly;
+    
+    
+
+        :nth-child(n){
+            width: 100%;
+        }
+    }
 `

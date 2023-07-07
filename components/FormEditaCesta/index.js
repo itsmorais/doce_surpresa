@@ -139,77 +139,95 @@ const FormEditaCestas = ({ catalogos }) => {
       ))}
       {cestaCriada && (
         <>
-          <div className="form-group mt-2">
-            <label style={{ fontSize: '2rem' }}>Nome da Cesta:</label>
-            <input
-              type="text"
-              className="form-control"
-              value={novaCestaNome || ''}
-              onChange={(e) => setNovaCestaNome(e.target.value)}
-            />
-          </div>
-          <div className="form-group mt-2">
-            <label style={{ fontSize: '2rem' }}>Foto da cesta:</label>
-            <input
-              className="form-control"
-              type="file"
-              name="foto"
-              onChange={(e) => setCestaImagem(e.target.files[0])}
-            />
-          </div>
-          <div className="col-sm-2">
-            <div className="form-group">
-              <label style={{ fontSize: '2rem' }}>Preço R$:</label>
+          <div className='container'>
+            <div className="form-group mt-2 ">
+              <div className="col-sm-4">
+
+                <label style={{ fontSize: '2rem' }}>Nome da Cesta:</label>
+                <input
+                  style={{ fontSize: '15px' }}
+                  type="text"
+                  className="form-control"
+                  value={novaCestaNome || ''}
+                  onChange={(e) => setNovaCestaNome(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="col-sm-5">
+
+              <div className="form-group mt-2">
+                <label style={{ fontSize: '2rem' }}>Foto da cesta:</label>
+                <input
+                  style={{ fontSize: '15px' }}
+
+                  className="form-control"
+                  type="file"
+                  name="foto"
+                  onChange={(e) => setCestaImagem(e.target.files[0])}
+                />
+              </div>
+            </div>
+            <div className="col-sm-2">
+              <div className="form-group">
+                <label style={{ fontSize: '2rem' }}>Preço R$:</label>
+                <input
+                  style={{ fontSize: '15px' }}
+
+                  type="number"
+                  className="form-control"
+                  step="0.01"
+                  value={novaCestaPreco || 0}
+                  onChange={(e) => setNovaCestaPreco(e.target.value)}
+                />
+              </div>
               <input
-                type="number"
-                className="form-control"
-                step="0.01"
-                value={novaCestaPreco || 0}
-                onChange={(e) => setNovaCestaPreco(e.target.value)}
+                type="button"
+                className="btn btn-success btn-lg mt-3"
+                value="Atualizar Cesta"
+                onClick={AtualizarCesta}
               />
             </div>
-            <input
-              type="button"
-              className="btn btn-success mt-3"
-              value="Atualizar Cesta"
-              onClick={AtualizarCesta}
-            />
+            {cestaCriada !== 0 && (
+              <input
+                type="button"
+                className="btn btn-info btn-lg mt-3"
+                value={`Você está Atualizando os itens da cesta: ${novaCestaNome || ''}`}
+              />
+            )}
           </div>
-          {cestaCriada !== 0 && (
-            <input
-              type="button"
-              className="btn btn-info mt-3"
-              value={`Você está Atualizando os itens da cesta: ${novaCestaNome || ''}`}
-            />
-          )}
         </>
       )}
       {cestaCriada !== 0 && (
         <>
-          <div className="col-sm-4">
-            <div className="form-group mt-5">
-              {itens.map((item, index) => (
-                <div key={index} className="input-group mb-3">
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder={`Novo item da cesta: ${novaCestaNome}`}
-                    value={item}
-                    onChange={(e) => handleItemChange(index, e.target.value)}
-                  />
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={() => handleDeleteItem(index)}
-                  >
-                    Excluir
-                  </button>
-                </div>
-              ))}
+          <div className=" container">
+            <div className="col-sm-3">
+
+              <div className="form-group mt-5">
+                {itens.map((item, index) => (
+                  <div key={index} className="input-group mb-3">
+                    <input
+                      style={{ fontSize: '15px' }}
+
+                      className="form-control"
+                      type="text"
+                      placeholder={`Novo item da cesta: ${novaCestaNome}`}
+                      value={item}
+                      onChange={(e) => handleItemChange(index, e.target.value)}
+                    />
+                    <button
+                      className="btn btn-outline-danger btn-lg"
+                      onClick={() => handleDeleteItem(index)}
+                    >
+                      Excluir
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
-            <button className="btn btn-primary mb-5" onClick={addNewItemField}>
+            <button className="btn btn-primary btn-lg mb-5" onClick={addNewItemField}>
               Adicionar item
             </button>
-            <button className="btn btn-success mb-5" onClick={AtribuirItem}>
+            <button className="btn btn-success btn-lg mb-5" onClick={AtribuirItem}>
               Atualizar Itens
             </button>
           </div>

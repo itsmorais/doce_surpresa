@@ -1,17 +1,18 @@
 import { Container } from "./style"
 import Image from "next/image"
 import Link from "next/link"
-
+import { Web } from "./style";
 const baseUrl = "https://docesurpresa-backend.onrender.com";
 
 
 export default function BoxCard({ dados }) {
     return (
         <>
-
+            
+<Web>
             {dados.map(({ cesta_nome, preco, image_src,item, id }) => (
 
-                <Container key={id}>
+                <Container id="container" key={id}>
                     <h3>Box: {cesta_nome}</h3>
                     <div id="Container">
 
@@ -53,8 +54,7 @@ export default function BoxCard({ dados }) {
 
 
             ))}
-
-
+</Web>
         </>
     )
 }
