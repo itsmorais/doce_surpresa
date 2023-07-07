@@ -221,10 +221,10 @@ const FormCatalogo = () => {
                                 </div>
                             ))}
                         </div>
-                        <button className="btn btn-primary mb-5 btn-lg" onClick={addNewItemField}>
+                        <button className="btn btn-primary btn-lg mb-5 btn-lg" onClick={addNewItemField}>
                             Adicionar item
                         </button>
-                        <button className="btn btn-success mb-5 btn-lg" onClick={AtribuirItem}>
+                        <button className="btn btn-success btn-lg mb-5 btn-lg" onClick={AtribuirItem}>
                             Incluir Itens
                         </button>
                     </div>

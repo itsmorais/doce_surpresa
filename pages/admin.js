@@ -14,6 +14,7 @@ export default function Home() {
             <Botao text={"Adicionar Catalogo"} link={'novo'}></Botao>
             <Botao text={"Editar Catalogo"} link={"editar"}></Botao>
             <Botao text={"Excluir Catalogo"} link={'excluir'}></Botao>
+            <Botao text={"Adicionar Cesta"} link={'nova_cesta'}></Botao>
             <Footer></Footer>
         </>
     )
