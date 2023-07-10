@@ -1,3 +1,5 @@
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 import Header from '@/components/Header'
 import CatalogoNome from '../../components/CatalogoNome'
 import BoxCard from '../../components/BoxCard'
@@ -5,10 +7,9 @@ import Head from 'next/head'
 import  Rodape  from '../../components/Footer'
 import { useRouter } from 'next/router'
 
-const baseUrl = "https://docesurpresa-backend.onrender.com";
 
 export default function Catalogo({nome,data}) {
-
+  console.log(nome,data)
 
   return (
     <>
@@ -22,7 +23,7 @@ export default function Catalogo({nome,data}) {
       </Head>
       <Header isActive={true} />
         <CatalogoNome nome={nome.titulo}></CatalogoNome>
-       <BoxCard dados={data}></BoxCard> 
+     {/*    <BoxCard dados={nome}></BoxCard>  */}
       <Rodape></Rodape>
     </>
   )
@@ -31,13 +32,20 @@ export default function Catalogo({nome,data}) {
 export async function getServerSideProps({query}){
   const {productType} = query
 
-  const dados = await fetch(`${baseUrl}/box/${productType}`)
-  const catalogos = await dados.json();
+  const catalogos = await prisma.catalogo.findUnique({where:{
+    id:parseInt(productType)
+  }})
 
-  const nomeCatalogo = await fetch(`${baseUrl}/catalogo`);
-  let nomeJson = await nomeCatalogo.json();
+  const nomes = await prisma.box.findMany({
+    where:{
+      catalogo_id:parseInt(productType)
+    },
+    include:{
+      item:true
+    }
+  });
 
-  nomeJson = nomeJson.filter((titulos) => titulos.id == productType);
+  const nomeJson = nomes.filter((titulos) => titulos.id == productType);
 
   
 

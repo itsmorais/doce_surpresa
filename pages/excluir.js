@@ -2,7 +2,6 @@ import Header from '../components/Header'
 import { useState } from 'react'
 
 export default function Home({ catalogos }) {
-  const baseUrl = "https://docesurpresa-backend.onrender.com";
 
   const [catalogosState, setCatalogoState] = useState(catalogos)
 
@@ -12,7 +11,7 @@ export default function Home({ catalogos }) {
 
     if (certeza) {
       try {
-        await fetch(`${baseUrl}/catalogo/${id}`, {
+        await fetch(`api/catalogo/${id}`, {
           method: 'DELETE'
         })
         alert`Catalogo excluído`
@@ -53,7 +52,7 @@ export default function Home({ catalogos }) {
 export async function getServerSideProps() {
   const baseUrl = "https://docesurpresa-backend.onrender.com";
 
-  const data = await fetch(`${baseUrl}/catalogo`)
+  const data = await fetch(`api/catalogo`)
   const catalogos = await data.json()
 
   return {

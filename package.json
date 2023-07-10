@@ -9,14 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^4.16.2",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
+    "multer": "^1.4.5-lts.1",
     "next": "13.3.4",
+    "prisma": "^4.16.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.1",
     "react-icons": "^4.8.0",
     "sharp": "^0.32.1",
-    "styled-components": "^5.3.10"
+    "styled-components": "^5.3.10",
+    "uuid": "^9.0.0"
   }
 }

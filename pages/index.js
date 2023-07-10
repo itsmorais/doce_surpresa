@@ -2,8 +2,8 @@ import Header from '../components/Header'
 import HomePage from '../components/HomePage'
 import Catalogo from '../components/Catalogo'
 import Footer from '@/components/Footer'
-const baseUrl = "https://docesurpresa-backend.onrender.com";
-
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export default function Home({ catalogos }) {
   return (
@@ -25,8 +25,7 @@ export default function Home({ catalogos }) {
 }
 
 export async function getServerSideProps() {
-  const data = await fetch(`${baseUrl}/catalogo`)
-  const catalogos = await data.json()
+  const catalogos = await  prisma.catalogo.findMany();
 
   return {
     props: {

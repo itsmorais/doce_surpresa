@@ -17,7 +17,7 @@ const FormEditaCatalogo = ({ catalogo }) => {
   const editaCatalogoNome = async () => {
     if (novoCatalogo != '') {
       try {
-        await fetch(`${baseUrl}/catalogo/${catalogoCriado}`, {
+        await fetch(`api/catalogo/${catalogoCriado}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

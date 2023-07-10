@@ -32,7 +32,7 @@ const FormNovaCesta = ({ catalogos }) => {
       formData.append("catalogo_id", catalogoCriado);
 
       try {
-        const response = await fetch(`${baseUrl}/box/${catalogos.id}`, {
+        const response = await fetch(`api/box/${catalogos.id}`, {
           method: "POST",
           body: formData,
         });
@@ -56,7 +56,7 @@ const FormNovaCesta = ({ catalogos }) => {
       alert("Adicione ao menos 1 item à cesta!");
     } else {
       try {
-        const newItem = await fetch(`${baseUrl}/item/${cestaCriada}`, {
+        const newItem = await fetch(`api/item/${cestaCriada}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

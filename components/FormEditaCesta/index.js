@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 const FormEditaCestas = ({ catalogos }) => {
-  const baseUrl = "https://docesurpresa-backend.onrender.com";
 
 
   const [cestas, setCestas] = useState([])
@@ -19,7 +18,7 @@ const FormEditaCestas = ({ catalogos }) => {
   }, [catalogos])
 
   const obterCestas = async () => {
-    let cestas = await fetch(`${baseUrl}/box/${catalogos.id}`)
+    let cestas = await fetch(`api/box/${catalogos.id}`)
     const cestasJson = await cestas.json();
     setCestas(cestasJson);
 
@@ -35,7 +34,7 @@ const FormEditaCestas = ({ catalogos }) => {
     formData.append("catalogo_id", catalogos.id);
 
     try {
-      const response = await fetch(`${baseUrl}/box/${cestaCriada}`, {
+      const response = await fetch(`api/box/${cestaCriada}`, {
         method: "PUT",
         body: formData,
       });
@@ -52,7 +51,7 @@ const FormEditaCestas = ({ catalogos }) => {
 
   const DeletarItem = async () => {
     try {
-      await fetch(`${baseUrl}/item/${cestaCriada}`, {
+      await fetch(`api/item/${cestaCriada}`, {
         method: 'DELETE',
       });
     } catch (error) { console.log(error) }
@@ -65,7 +64,7 @@ const FormEditaCestas = ({ catalogos }) => {
     } else {
       try {
         await DeletarItem();
-        const newItem = await fetch(`${baseUrl}/item/${cestaCriada}`, {
+        const newItem = await fetch(`api/item/${cestaCriada}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

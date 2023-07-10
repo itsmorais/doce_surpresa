@@ -7,7 +7,6 @@ import FormNovaCesta from '@/components/FormNovaCesta';
 
 
 export default function Home({ catalogos }) {
-  const baseUrl = "https://docesurpresa-backend.onrender.com";
 
   const [catalogosState, setCatalogoState] = useState(catalogos);
   const [catalogoEscolido, setCatalogoEscolido] = useState();
@@ -61,9 +60,8 @@ export default function Home({ catalogos }) {
 
 
 export async function getServerSideProps() {
-  const baseUrl = "https://docesurpresa-backend.onrender.com";
 
-  const data = await fetch(`${baseUrl}/catalogo`)
+  const data = await fetch(`api/catalogo`)
   const catalogos = await data.json()
 
   return {
