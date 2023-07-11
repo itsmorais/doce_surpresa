@@ -1,27 +1,26 @@
 import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();import multer from 'multer';
+const prisma = new PrismaClient(); import multer from 'multer';
 
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { box } = req.query;
+    let { box } = req.query;
     const { itens } = req.body;
+    box = parseInt(box)
 
     if (!itens || !Array.isArray(itens) || itens.length === 0) {
       return res.status(400).json({ msg: 'Informe pelo menos um item!' });
     }
+
 
     try {
       for (const item_nome of itens) {
         await prisma.item.create({
           data: {
             item_nome,
-            box: {
-              connect: {
-                id: box,
-              },
-            },
+            box_id: box,
           },
+
         });
       }
       res.status(201).json({ msg: 'Itens incluídos com sucesso!' });
@@ -30,7 +29,8 @@ export default async function handler(req, res) {
     }
   } else if (req.method === 'DELETE') {
     const { box } = req.query;
-    const id = box;
+    let id = parseInt(box);
+
 
     try {
       await prisma.item.deleteMany({

@@ -1,9 +1,11 @@
 import Header from '../components/Header'
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 import { useState } from 'react'
 import FormEditaCatalogo from '@/components/FormEditaCatalogo';
 import FormEditaCestas from '@/components/FormEditaCesta';
 import FormNovaCesta from '@/components/FormNovaCesta';
- 
+
 
 
 export default function Home({ catalogos }) {
@@ -19,7 +21,7 @@ export default function Home({ catalogos }) {
 
 
       <Header />
-      
+
       <div className='container'>
         <h2 style={{ textAlign: 'center' }} className="fst-bold mt-5">Clique sobre um catalogo para Edita-lo! </h2>
       </div>
@@ -45,7 +47,7 @@ export default function Home({ catalogos }) {
         <>
           <FormEditaCatalogo catalogo={catalogoEscolido} ></FormEditaCatalogo>
           <FormEditaCestas catalogos={catalogoEscolido}></FormEditaCestas>
-          
+
         </>
       )}
 
@@ -61,10 +63,8 @@ export default function Home({ catalogos }) {
 
 
 export async function getServerSideProps() {
-  const baseUrl = "https://docesurpresa-backend.onrender.com";
 
-  const data = await fetch(`api/catalogo`)
-  const catalogos = await data.json()
+  const catalogos = await prisma.catalogo.findMany();
 
   return {
     props: {

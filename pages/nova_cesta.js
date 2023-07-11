@@ -1,14 +1,16 @@
 import Header from '../components/Header'
 import { useState } from 'react'
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 import FormEditaCatalogo from '@/components/FormEditaCatalogo';
 import FormEditaCestas from '@/components/FormEditaCesta';
 import FormNovaCesta from '@/components/FormNovaCesta';
- 
 
 
-export default function Home({ catalogos }) {
 
-  const [catalogosState, setCatalogoState] = useState(catalogos);
+export default function Home({ data }) {
+
+  const [catalogosState, setCatalogoState] = useState(data);
   const [catalogoEscolido, setCatalogoEscolido] = useState();
 
 
@@ -19,7 +21,7 @@ export default function Home({ catalogos }) {
 
 
       <Header />
-      
+
       <div className='container'>
         <h2 style={{ textAlign: 'center' }} className="fst-bold mt-5">Selecione o catalogo que deseja adicionar a cesta! </h2>
       </div>
@@ -43,8 +45,8 @@ export default function Home({ catalogos }) {
 
       {catalogoEscolido && (
         <>
-          <FormNovaCesta catalogos={catalogoEscolido}/>
-          
+          <FormNovaCesta catalogos={catalogoEscolido} />
+
         </>
       )}
 
@@ -61,12 +63,11 @@ export default function Home({ catalogos }) {
 
 export async function getServerSideProps() {
 
-  const data = await fetch(`api/catalogo`)
-  const catalogos = await data.json()
+  const data = await prisma.catalogo.findMany()
 
   return {
     props: {
-      catalogos
+      data
     }
   }
 }

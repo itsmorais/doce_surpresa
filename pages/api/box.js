@@ -1,18 +1,23 @@
 import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();import multer from 'multer';
-import { v4 as uuidv4 } from 'uuid';
+import multer from "multer";
+import path from "path";
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: 'uploads/',
-    filename: (req, file, cb) => {
-      const extensaoArquivo = file.originalname.split('.')[1];
-      const novoNomeArquivo = uuidv4();
+const prisma = new PrismaClient();
 
-      cb(null, `${novoNomeArquivo}.${extensaoArquivo}`);
-    },
-  }),
+const storage = multer.diskStorage({
+  destination: "./public",
+  filename: function (req, file, cb) {
+    const extensaoArquivo = file.originalname.split(".")[1];
+    const novoNomeArquivo = require("crypto")
+      .randomBytes(64)
+      .toString("hex");
+
+    const fileName = `${novoNomeArquivo}.${extensaoArquivo}`;
+    cb(null, fileName);
+  },
 });
+
+const upload = multer({ storage });
 
 export const config = {
   api: {
@@ -21,13 +26,13 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  if (req.method === 'GET') {
-    const { catalogo } = req.query;
+  const { catalogo } = req.query;
 
+  if (req.method === "GET") {
     try {
       const boxes = await prisma.box.findMany({
         where: {
-          catalogo_id: catalogo,
+          catalogo_id: parseInt(catalogo),
         },
         include: {
           item: true,
@@ -38,40 +43,40 @@ export default async function handler(req, res) {
     } catch (error) {
       res.status(500).json({ msg: error.message });
     }
-  } else if (req.method === 'POST') {
-    const { catalogo } = req.query;
-    const { cesta_nome, preco, image_src } = req.body;
+  } else if (req.method === "POST") {
+    upload.single("foto")(req, res, async function () {
+      try {
+        let { cesta_nome, preco, catalogo_id } = req.body;
+        catalogo_id = parseInt(catalogo_id)
+        preco = parseFloat(preco)
 
-    if (!cesta_nome || !preco || !image_src) {
-      res.status(400).json({ msg: 'Informe o nome da cesta, preço e imagem!' });
-      return;
-    }
+        let image_src = req.file ? req.file.path : "";
+        image_src = req.file.path.replace("public/", "");
 
-    try {
-      const novaCesta = await prisma.box.create({
-        data: {
-          cesta_nome,
-          preco,
-          image_src,
-          catalogo: {
-            connect: {
-              id: catalogo,
-            },
+
+        const novaCesta = await prisma.box.create({
+          data: {
+            cesta_nome,
+            preco,
+            image_src,
+            catalogo_id,
           },
-        },
-      });
+        });
 
-      res.status(201).json({ id: novaCesta.id });
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
-  } else if (req.method === 'DELETE') {
+        res.status(201).json({ id: novaCesta.id });
+      } catch (error) {
+        res.status(400).json({ msg: error.message });
+      }
+    });
+
+
+  } else if (req.method === "DELETE") {
     const { box } = req.query;
 
     try {
       await prisma.box.delete({
         where: {
-          id: box,
+          id: parseInt(box),
         },
       });
 
@@ -79,16 +84,24 @@ export default async function handler(req, res) {
     } catch (error) {
       res.status(400).json({ msg: error.message });
     }
-  } else if (req.method === 'PUT') {
-    const { box } = req.query;
-    const { cesta_nome, preco } = req.body;
-    const id = box;
+  } else if (req.method === "PUT") {
+    upload.single("foto")(req, res, async function (err) {
+      if (err instanceof multer.MulterError) {
+        return res.status(400).json({ msg: "Error uploading file." });
+      } else if (err) {
+        return res.status(400).json({ msg: err.message });
+      }
 
-    try {
+      const { box } = req.query;
+      const { cesta_nome = "", preco = "" } = req.body || {};
+      const id = parseInt(box);
+
       const updatedBox = {};
 
       if (req.file) {
-        updatedBox.image_src = req.file.path;
+        updatedBox.image_src = req.file.path.replace("public/", "");
+
+
       }
 
       if (cesta_nome) {
@@ -96,20 +109,22 @@ export default async function handler(req, res) {
       }
 
       if (preco) {
-        updatedBox.preco = preco;
+        updatedBox.preco = parseFloat(preco);
       }
 
-      await prisma.box.update({
-        where: {
-          id,
-        },
-        data: updatedBox,
-      });
+      try {
+        await prisma.box.update({
+          where: {
+            id,
+          },
+          data: updatedBox,
+        });
 
-      res.status(200).json();
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
+        res.status(200).json();
+      } catch (error) {
+        res.status(400).json({ msg: error.message });
+      }
+    });
   } else {
     res.status(405).end(); // Method Not Allowed
   }

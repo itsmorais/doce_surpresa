@@ -4,9 +4,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true
   },
-  images:{
-    domains:['docesurpresa-backend.onrender.com'],
-  }
+
   
 }
 

@@ -1,3 +1,5 @@
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 import Header from '../components/Header'
 import { useState } from 'react'
 
@@ -11,7 +13,7 @@ export default function Home({ catalogos }) {
 
     if (certeza) {
       try {
-        await fetch(`api/catalogo/${id}`, {
+        await fetch(`api/catalogo?catalogo=${id}`, {
           method: 'DELETE'
         })
         alert`Catalogo excluído`
@@ -50,10 +52,8 @@ export default function Home({ catalogos }) {
 }
 
 export async function getServerSideProps() {
-  const baseUrl = "https://docesurpresa-backend.onrender.com";
 
-  const data = await fetch(`api/catalogo`)
-  const catalogos = await data.json()
+  const catalogos = await prisma.catalogo.findMany()
 
   return {
     props: {

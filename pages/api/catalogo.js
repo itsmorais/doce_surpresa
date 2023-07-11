@@ -12,7 +12,6 @@ export default async function handler(req, res) {
       res.status(400).json({ msg: error.message });
     }
   } else if (req.method === 'POST') {
-    console.log(req.body);
     const { titulo } = req.body;
     if (!titulo) {
       res.status(400).json({ msg: 'Enviar titulo do catalogo' });
@@ -27,26 +26,27 @@ export default async function handler(req, res) {
   } else if (req.method === 'DELETE') {
     const { catalogo } = req.query;
 
+
     try {
       // Delete feito com cascade! Deleta o catalogo + cestas + itens
       await prisma.$transaction(async (trx) => {
         await trx.item.deleteMany({
           where: {
             box: {
-              catalogo_id: catalogo,
+              catalogo_id: parseInt(catalogo),
             },
           },
         });
 
         await trx.box.deleteMany({
           where: {
-            catalogo_id: catalogo,
+            catalogo_id: parseInt(catalogo),
           },
         });
 
         await trx.catalogo.delete({
           where: {
-            id: catalogo,
+            id: parseInt(catalogo),
           },
         });
       });
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === 'PUT') {
     const { catalogo } = req.query;
-    const id = catalogo;
+    const id = parseInt(catalogo);
     const { titulo } = req.body;
 
     try {

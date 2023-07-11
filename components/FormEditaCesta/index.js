@@ -18,7 +18,7 @@ const FormEditaCestas = ({ catalogos }) => {
   }, [catalogos])
 
   const obterCestas = async () => {
-    let cestas = await fetch(`api/box/${catalogos.id}`)
+    let cestas = await fetch(`api/box?catalogo=${catalogos.id}`)
     const cestasJson = await cestas.json();
     setCestas(cestasJson);
 
@@ -34,7 +34,7 @@ const FormEditaCestas = ({ catalogos }) => {
     formData.append("catalogo_id", catalogos.id);
 
     try {
-      const response = await fetch(`api/box/${cestaCriada}`, {
+      const response = await fetch(`api/box?box=${cestaCriada}`, {
         method: "PUT",
         body: formData,
       });
@@ -51,7 +51,7 @@ const FormEditaCestas = ({ catalogos }) => {
 
   const DeletarItem = async () => {
     try {
-      await fetch(`api/item/${cestaCriada}`, {
+      await fetch(`api/item?box=${cestaCriada}`, {
         method: 'DELETE',
       });
     } catch (error) { console.log(error) }
@@ -64,7 +64,7 @@ const FormEditaCestas = ({ catalogos }) => {
     } else {
       try {
         await DeletarItem();
-        const newItem = await fetch(`api/item/${cestaCriada}`, {
+        const newItem = await fetch(`api/item?box=${cestaCriada}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -89,10 +89,8 @@ const FormEditaCestas = ({ catalogos }) => {
   };
 
   const handleItemChange = (index, value) => {
-    console.log(value)
     const updatedItems = [...itens];
     updatedItems[index] = value;
-    console.log(updatedItems)
     setItens(updatedItems);
   };
 
@@ -136,7 +134,7 @@ const FormEditaCestas = ({ catalogos }) => {
         </div>
 
       ))}
-    
+
 
       {cestaCriada && (
         <>

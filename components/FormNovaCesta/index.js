@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const FormNovaCesta = ({ catalogos }) => {
-  const baseUrl = "https://docesurpresa-backend.onrender.com";
 
   const [novoCatalogo, setNovoCatalogo] = useState("");
   const [catalogoCriado, setCatalogoCriado] = useState(0);
@@ -29,10 +28,10 @@ const FormNovaCesta = ({ catalogos }) => {
       formData.append("cesta_nome", novaCestaNome);
       formData.append("preco", novaCestaPreco);
       formData.append("foto", cestaImagem);
-      formData.append("catalogo_id", catalogoCriado);
+      formData.append("catalogo_id", catalogos.id);
 
       try {
-        const response = await fetch(`api/box/${catalogos.id}`, {
+        const response = await fetch(`api/box`, {
           method: "POST",
           body: formData,
         });
@@ -43,10 +42,12 @@ const FormNovaCesta = ({ catalogos }) => {
           setNomeDaCestaCriada(novaCestaNome);
           alert(`Cesta adicionada ao catalogo ${nomeDoCatalogoCriado}`);
         } else {
-          throw new Error("Failed to create cesta");
+          const errorData = await response.json();
+          throw new Error(errorData.msg);
         }
       } catch (error) {
         console.error(error);
+        alert("Failed to create cesta: " + error.message);
       }
     }
   };
@@ -56,7 +57,7 @@ const FormNovaCesta = ({ catalogos }) => {
       alert("Adicione ao menos 1 item à cesta!");
     } else {
       try {
-        const newItem = await fetch(`api/item/${cestaCriada}`, {
+        const newItem = await fetch(`api/item?box=${cestaCriada}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -159,39 +160,39 @@ const FormNovaCesta = ({ catalogos }) => {
 
       {cestaCriada !== 0 && (
         <>
-        <div className='form-group'>
-          <div className="container sm-4">
-            <div className="form-group mt-5">
-              <div className='col-sm-4'>
-              
-              {itens.map((item, index) => (
-                <div key={index} className="input-group mb-3">
-                  <input
-                    style={{ fontSize: '15px' }}
+          <div className='form-group'>
+            <div className="container sm-4">
+              <div className="form-group mt-5">
+                <div className='col-sm-4'>
 
-                    className="form-control"
-                    type="text"
-                    placeholder={`Novo item da cesta: ${novaCestaNome}`}
-                    value={item}
-                    onChange={(e) => handleItemChange(index, e.target.value)}
-                  />
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={() => handleDeleteItem(index)}
-                  >
-                    Excluir
-                  </button>
+                  {itens.map((item, index) => (
+                    <div key={index} className="input-group mb-3">
+                      <input
+                        style={{ fontSize: '15px' }}
+
+                        className="form-control"
+                        type="text"
+                        placeholder={`Novo item da cesta: ${novaCestaNome}`}
+                        value={item}
+                        onChange={(e) => handleItemChange(index, e.target.value)}
+                      />
+                      <button
+                        className="btn btn-outline-danger"
+                        onClick={() => handleDeleteItem(index)}
+                      >
+                        Excluir
+                      </button>
+                    </div>
+                  ))}
                 </div>
-              ))}
+                <button className="btn btn-primary btn-lg mb-5" onClick={addNewItemField}>
+                  Adicionar item
+                </button>
+                <button className="btn btn-success btn-lg mb-5" onClick={AtribuirItem}>
+                  Incluir Itens
+                </button>
+              </div>
             </div>
-            <button className="btn btn-primary btn-lg mb-5" onClick={addNewItemField}>
-              Adicionar item
-            </button>
-            <button className="btn btn-success btn-lg mb-5" onClick={AtribuirItem}>
-              Incluir Itens
-            </button>
-          </div>
-          </div>
           </div>
         </>
       )}

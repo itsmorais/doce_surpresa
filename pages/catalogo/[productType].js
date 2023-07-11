@@ -4,12 +4,11 @@ import Header from '@/components/Header'
 import CatalogoNome from '../../components/CatalogoNome'
 import BoxCard from '../../components/BoxCard'
 import Head from 'next/head'
-import  Rodape  from '../../components/Footer'
+import Rodape from '../../components/Footer'
 import { useRouter } from 'next/router'
 
 
-export default function Catalogo({nome,data}) {
-  console.log(nome,data)
+export default function Catalogo({ cestas, data }) {
 
   return (
     <>
@@ -18,42 +17,43 @@ export default function Catalogo({nome,data}) {
         <title>Doce Surpresa Cestaria</title>
         <meta name="description" content="Por Selma Fernanda" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
         <link rel="icon" href="/logo.svg" />
       </Head>
       <Header isActive={true} />
-        <CatalogoNome nome={nome.titulo}></CatalogoNome>
-     {/*    <BoxCard dados={nome}></BoxCard>  */}
+      <CatalogoNome nome={data.titulo}></CatalogoNome>
+      <BoxCard key={data.id} cestas={cestas}></BoxCard>
       <Rodape></Rodape>
     </>
   )
 }
 
-export async function getServerSideProps({query}){
-  const {productType} = query
+export async function getServerSideProps({ query }) {
+  const { productType } = query
 
-  const catalogos = await prisma.catalogo.findUnique({where:{
-    id:parseInt(productType)
-  }})
+  const catalogos = await prisma.catalogo.findUnique({
+    where: {
+      id: parseInt(productType)
+    }
+  })
 
-  const nomes = await prisma.box.findMany({
-    where:{
-      catalogo_id:parseInt(productType)
+  const cestas = await prisma.box.findMany({
+    where: {
+      catalogo_id: parseInt(productType)
     },
-    include:{
-      item:true
+    include: {
+      item: true
     }
   });
 
-  const nomeJson = nomes.filter((titulos) => titulos.id == productType);
-
-  
 
 
-  return{
-    props:{
-      nome:nomeJson[0],
-      data:catalogos
+
+
+  return {
+    props: {
+      cestas: cestas,
+      data: catalogos
     }
   }
 

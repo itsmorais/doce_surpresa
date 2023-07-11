@@ -4,40 +4,38 @@ import Link from "next/link"
 import { Web } from "./style";
 
 
-export default function BoxCard({ nome }) {
-    console.log(nome)
+export default function BoxCard({ cestas }) {
     return (
         <>
-            
-<Web>
-            {nome.map(({ cesta_nome, preco, image_src,item, id }) => (
 
-                <Container id="container" key={id}>
-                    <h3>Box: {cesta_nome}</h3>
-                    <div id="Container">
+            <Web>
+                {cestas.map(({ cesta_nome, preco, image_src, item, id }) => (
 
-                        <div id="Lista">
-                            {item.map((itemUnidade, id) => (
-                                <li key={id}>{itemUnidade.item_nome}</li>
-                            ))}
-                        </div>
+                    <Container id="container" key={id}>
+                        <h3>Box: {cesta_nome}</h3>
+                        <div id="Container">
 
-                        <div id="Imagem-preco-botao">
-                            <div id="ImageContainer">
-                                <Image src={`api/box/${image_src}`} width={150} height={150} alt="Imagem da cesta" key={id}></Image>
+                            <div id="Lista">
+                                {item.map((itemUnidade, id) => (
+                                    <li key={id}>{itemUnidade.item_nome}</li>
+                                ))}
                             </div>
-                            {preco &&                             <p>R${preco} <span>+Frete</span></p>
-}
-                            <Link href={`https://wa.me/5512991134425?text=Olá%20,tenho%20interesse%20no%20box%20${cesta_nome}%20de%20R$%20${preco || ""}`} target="_blank">
-                                <button id="euQuero">Eu Quero</button>
-                            </Link>
+
+                            <div id="Imagem-preco-botao">
+                                <div id="ImageContainer">
+                                    <Image src={`/${image_src}`} width={150} height={150} alt="Imagem da cesta" key={id}></Image>
+                                </div>
+                                {preco && <p>R${preco} <span>+Frete</span></p>
+                                }
+                                <Link href={`https://wa.me/5512991134425?text=Olá%20,tenho%20interesse%20no%20box%20${cesta_nome}%20de%20R$%20${preco || ""}`} target="_blank">
+                                    <button id="euQuero">Eu Quero</button>
+                                </Link>
 
 
+                            </div>
                         </div>
-                    </div>
 
-                </Container>
-
+                    </Container>
 
 
 
@@ -53,8 +51,9 @@ export default function BoxCard({ nome }) {
 
 
 
-            ))}
-</Web>
+
+                ))}
+            </Web>
         </>
     )
 }
