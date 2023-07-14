@@ -23,7 +23,7 @@ export default function BoxCard({ cestas }) {
 
                             <div id="Imagem-preco-botao">
                                 <div id="ImageContainer">
-                                    <Image src={`/${image_src}`} width={150} height={150} alt="Imagem da cesta" key={id}></Image>
+                                    <Image src={image_src} width={150} height={150} alt="Imagem da cesta" key={id}></Image>
                                 </div>
                                 {preco && <p>R${preco} <span>+Frete</span></p>
                                 }

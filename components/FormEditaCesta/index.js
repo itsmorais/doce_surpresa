@@ -27,24 +27,32 @@ const FormEditaCestas = ({ catalogos }) => {
 
   const AtualizarCesta = async () => {
 
-    const formData = new FormData();
-    formData.append("cesta_nome", novaCestaNome);
-    formData.append("preco", novaCestaPreco);
-    formData.append("foto", cestaImagem);
-    formData.append("catalogo_id", catalogos.id);
-
     try {
       const response = await fetch(`api/box?box=${cestaCriada}`, {
         method: "PUT",
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cesta_nome: novaCestaNome,
+          preco: novaCestaPreco,
+          image_src: cestaImagem,
+          catalogo_id: catalogos.id
+        })
       });
 
-      alert(`Cesta atualizada com sucesso!`);
-      await obterCestas();
-
+      if (response.ok) {
+        setNomeDaCestaCriada(novaCestaNome);
+        alert(`Cesta adicionada ao catalogo ${nomeDoCatalogoCriado}`);
+        await obterCestas();
+      } else {
+        throw new Error("Failed to create cesta");
+      }
     } catch (error) {
       console.error(error);
     }
+
+
 
   };
 
@@ -155,14 +163,14 @@ const FormEditaCestas = ({ catalogos }) => {
             <div className="col-sm-5">
 
               <div className="form-group mt-2">
-                <label style={{ fontSize: '2rem' }}>Foto da cesta:</label>
+                <label style={{ fontSize: '2rem' }}>Foto da cesta(URL):</label>
                 <input
                   style={{ fontSize: '15px' }}
 
                   className="form-control"
-                  type="file"
-                  name="foto"
-                  onChange={(e) => setCestaImagem(e.target.files[0])}
+                  type="text"
+                  name="imagem_src"
+                  onChange={(e) => setCestaImagem(e.target.value)}
                 />
               </div>
             </div>

@@ -24,16 +24,19 @@ const FormNovaCesta = ({ catalogos }) => {
     if (!novaCestaNome || !novaCestaPreco || !cestaImagem) {
       alert("Algum campo não foi preenchido");
     } else {
-      const formData = new FormData();
-      formData.append("cesta_nome", novaCestaNome);
-      formData.append("preco", novaCestaPreco);
-      formData.append("foto", cestaImagem);
-      formData.append("catalogo_id", catalogos.id);
 
       try {
         const response = await fetch(`api/box`, {
           method: "POST",
-          body: formData,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            cesta_nome: novaCestaNome,
+            preco: novaCestaPreco,
+            image_src: cestaImagem,
+            catalogo_id: catalogos.id
+          })
         });
 
         if (response.ok) {
@@ -123,9 +126,9 @@ const FormNovaCesta = ({ catalogos }) => {
               style={{ fontSize: '15px' }}
 
               className="form-control"
-              type="file"
-              name="foto"
-              onChange={(e) => setCestaImagem(e.target.files[0])}
+              type="text"
+              name="image_src"
+              onChange={(e) => setCestaImagem(e.target.value)}
             />
           </div>
           <div className="col-sm-2">

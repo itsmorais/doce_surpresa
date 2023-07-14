@@ -49,16 +49,19 @@ const FormCatalogo = () => {
         if (!novaCestaNome || !novaCestaPreco || !cestaImagem) {
             alert("Algum campo não foi preenchido");
         } else {
-            const formData = new FormData();
-            formData.append("cesta_nome", novaCestaNome);
-            formData.append("preco", novaCestaPreco);
-            formData.append("foto", cestaImagem);
-            formData.append("catalogo_id", catalogoCriado);
 
             try {
                 const response = await fetch(`api/box`, {
                     method: "POST",
-                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        cesta_nome: novaCestaNome,
+                        preco: novaCestaPreco,
+                        image_src: cestaImagem,
+                        catalogo_id: catalogos.id
+                    })
                 });
 
                 if (response.ok) {
@@ -67,10 +70,12 @@ const FormCatalogo = () => {
                     setNomeDaCestaCriada(novaCestaNome);
                     alert(`Cesta adicionada ao catalogo ${nomeDoCatalogoCriado}`);
                 } else {
-                    throw new Error("Failed to create cesta");
+                    const errorData = await response.json();
+                    throw new Error(errorData.msg);
                 }
             } catch (error) {
                 console.error(error);
+                alert("Failed to create cesta: " + error.message);
             }
         }
     };
@@ -163,9 +168,9 @@ const FormCatalogo = () => {
                             style={{ fontSize: '15px' }}
 
                             className="form-control"
-                            type="file"
-                            name="foto"
-                            onChange={(e) => setCestaImagem(e.target.files[0])}
+                            type="text"
+                            name="image_src"
+                            onChange={(e) => setCestaImagem(e.target.value)}
                         />
                     </div>
                     <div className="col-sm-2">

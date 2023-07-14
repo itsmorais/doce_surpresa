@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 
 
 export default function Catalogo({ cestas, data }) {
+  console.log(cestas)
 
   return (
     <>
