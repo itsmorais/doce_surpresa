@@ -1,38 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Passo a passo para utilizar o modo de edição
 
-## Getting Started
+# 1 Criar um catalogo
+[Gravação de tela de 24-07-2023 21:02:25.webm](https://github.com/itsmorais/doce_surpresa/assets/53665466/597bf97b-9768-43dd-b257-9826eb96bac3)
+### Nessa mesma tela, após criar um catalogo você pode criar as cestas que irão compor esse catalogo.
+[Gravação de tela de 24-07-2023 21:04:36.webm](https://github.com/itsmorais/doce_surpresa/assets/53665466/1c56b8ea-8487-444a-97ff-7d583b57383b)
+### Ainda nessa tela, após criar a cesta você pode criar os itens que irão compor essa cesta.
+[Gravação de tela de 24-07-2023 21:06:17.webm](https://github.com/itsmorais/doce_surpresa/assets/53665466/b9bcd660-4bf2-4526-a482-aea0ee31c82b)
 
-First, run the development server:
+### Nessa mesma tela você pode criar outra cesta que irá compor o mesmo catalogo
+### Não se esqueça de adicionar os itens a essa nova cesta, se quiser utilizar os mesmos itens da cesta anterior basta clicar no botão verde para salver esse itens
+[Gravação de tela de 24-07-2023 21:08:20.webm](https://github.com/itsmorais/doce_surpresa/assets/53665466/07ba953b-7686-44ec-b61a-b1dcacfb10f1)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+# 2 Editar um catalogo
+### Na tela de edição você pode:
+- Editar o nome do catalogo
+- Editar o nome da cesta
+- Editar o preço da cesta
+- Editar a imagem da cesta
+- Editar os itens da cesta( Remover ou adicionar novos )
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[Gravação de tela de 24-07-2023 21:11:52.webm](https://github.com/itsmorais/doce_surpresa/assets/53665466/7d6f02b8-ebfe-4f2d-9335-d2e8a0304825)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Repare que nessa gravação eu escolhi o catalogo chamado "Meu cataogo de teste" escolhi a cesta "Minha segunda cesta!" e adicionei itens a essa cesta
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# 3 Excluir um catalogo
+### Aqui não tem muito segredo, basta clicar sobre o catalogo que deseja excluir e confirmar a exclusão
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+[Gravação de tela de 24-07-2023 21:18:10.webm](https://github.com/itsmorais/doce_surpresa/assets/53665466/e0a59383-d740-4f5b-8eb9-fbe52bf7597a)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# 4 Adicionar cesta
+### Nessa tela você pode adicionar cestas a um catalogo existente.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[Gravação de tela de 24-07-2023 21:21:09.webm](https://github.com/itsmorais/doce_surpresa/assets/53665466/506a1b50-8848-4c5d-8573-350526698949)
