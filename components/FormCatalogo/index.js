@@ -1,14 +1,13 @@
 import { useState } from 'react';
 
 const FormCatalogo = () => {
-    const baseUrl = "https://docesurpresa-backend.onrender.com";
 
     const [novoCatalogo, setNovoCatalogo] = useState("");
     const [catalogoCriado, setCatalogoCriado] = useState(0);
     const [nomeDoCatalogoCriado, setNomeDoCatalogoCriado] = useState('');
     const [novaCestaNome, setNovaCestaNome] = useState("");
     const [novaCestaPreco, setNovaCestaPreco] = useState(0);
-    const [cestaImagem, setCestaImagem] = useState(null);
+    const [cestaImagem, setCestaImagem] = useState("");
     const [cestaCriada, setCestaCriada] = useState(0);
     const [nomeDaCestaCriada, setNomeDaCestaCriada] = useState('')
     const [novoItem, setNovoItem] = useState("");
@@ -60,7 +59,7 @@ const FormCatalogo = () => {
                         cesta_nome: novaCestaNome,
                         preco: novaCestaPreco,
                         image_src: cestaImagem,
-                        catalogo_id: catalogos.id
+                        catalogo_id: catalogoCriado
                     })
                 });
 
@@ -96,6 +95,7 @@ const FormCatalogo = () => {
                 if (newItem.ok) {
                     setNovaCestaNome("");
                     setNovaCestaPreco(0);
+                    setCestaImagem("");
                     alert(`Itens vinculados com sucesso à cesta: ${novaCestaNome}`);
                 } else {
                     throw new Error("Failed to create item");
