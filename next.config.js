@@ -8,7 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'drive.google.com',
+        hostname: 'drive.google.com/uc?export=view&id',
         port: '',
         pathname: '**',
       },
