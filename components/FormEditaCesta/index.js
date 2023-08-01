@@ -123,6 +123,23 @@ const FormEditaCestas = ({ catalogos }) => {
     })
     setItens([...oldItems]);
   }
+  const handleDeleteCesta = async (id) => {
+    const certeza = confirm(`Deseja excluir?`)
+
+    if (certeza) {
+      try {
+        await fetch(`api/box?box=${id}`, {
+          method: 'DELETE'
+        })
+        setCestas(cestas.filter((cesta) => cesta.id != id))
+        alert`Cesta excluída`
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    else { return }
+  }
 
   return (
     <>
@@ -137,7 +154,13 @@ const FormEditaCestas = ({ catalogos }) => {
             onClick={() => handleEditCesta(cesta)}
             style={{ textAlign: 'center', margin: 'auto', width: '100%' }}
           >
-            {cesta.cesta_nome}
+          {cesta.cesta_nome}
+          </button>
+          <button
+            className="btn btn-outline-danger btn-lg"
+            onClick={() => handleDeleteCesta(cesta.id)}
+          >
+            Excluir
           </button>
         </div>
 
