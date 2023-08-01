@@ -12,7 +12,7 @@ export default function BoxCard({ cestas }) {
                 {cestas.map(({ cesta_nome, preco, image_src, item, id }) => (
 
                     <Container id="container" key={id}>
-                        <h3>Box: {cesta_nome}</h3>
+                        <h3>{cesta_nome}</h3>
                         <div id="Container">
 
                             <div id="Lista">
