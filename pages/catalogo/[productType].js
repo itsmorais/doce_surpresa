@@ -9,7 +9,10 @@ import { useRouter } from 'next/router'
 
 
 export default function Catalogo({ cestas, data }) {
-  console.log(cestas)
+
+  const router = useRouter();
+  const { productType } = router.query
+  console.log(data)
 
   return (
     <>
@@ -29,15 +32,23 @@ export default function Catalogo({ cestas, data }) {
   )
 }
 
-export async function getServerSideProps({ query }) {
-  const { productType } = query
 
-  const catalogos = await prisma.catalogo.findUnique({
-    where: {
-      id: parseInt(productType)
-    }
-  })
+export async function getStaticPaths() {
+  const catalogos = await prisma.catalogo.findMany();
 
+  const paths = catalogos.map((catalogo) => ({
+    params: { productType: String(catalogo.id) },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+
+export async function getStaticProps({ params }) {
+  const productType = params.productType;
   const cestas = await prisma.box.findMany({
     where: {
       catalogo_id: parseInt(productType)
@@ -47,14 +58,17 @@ export async function getServerSideProps({ query }) {
     }
   });
 
-
-
+  const data = await prisma.catalogo.findUnique({
+    where: {
+      id: parseInt(productType)
+    }
+  });
 
 
   return {
     props: {
-      cestas: cestas,
-      data: catalogos
+      cestas,
+      data
     }
   }
 

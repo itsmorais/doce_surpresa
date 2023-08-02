@@ -24,7 +24,7 @@ export default function Home({ catalogos }) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const catalogos = await  prisma.catalogo.findMany();
 
   return {
