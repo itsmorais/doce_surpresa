@@ -1,75 +1,41 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import fsPromises from 'fs/promises';
+import path from 'path';
 
+const dataFilePath = path.join(process.cwd(), 'json/userData.json');
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    // Retorna todos os catalogos
-    try {
-      const catalogo = await prisma.catalogo.findMany();
-      res.status(200).json(catalogo);
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
-  } else if (req.method === 'POST') {
-    const { titulo } = req.body;
-    if (!titulo) {
-      res.status(400).json({ msg: 'Enviar titulo do catalogo' });
-      return;
-    }
-    try {
-      const novoCatalogo = await prisma.catalogo.create({ data: { titulo } });
-      res.status(201).json({ id: novoCatalogo.id });
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
-  } else if (req.method === 'DELETE') {
-    const { catalogo } = req.query;
+    const jsonData = await fsPromises.readFile(dataFilePath);
+    const objectData = JSON.parse(jsonData);
+    console.log(objectData)
+    res.status(200).json(objectData);
 
 
-    try {
-      // Delete feito com cascade! Deleta o catalogo + cestas + itens
-      await prisma.$transaction(async (trx) => {
-        await trx.item.deleteMany({
-          where: {
-            box: {
-              catalogo_id: parseInt(catalogo),
-            },
-          },
-        });
 
-        await trx.box.deleteMany({
-          where: {
-            catalogo_id: parseInt(catalogo),
-          },
-        });
-
-        await trx.catalogo.delete({
-          where: {
-            id: parseInt(catalogo),
-          },
-        });
-      });
-
-      res.status(200).json({ message: 'Catalogo and associated items deleted successfully' });
-    } catch (error) {
-      res.status(400).json({ message: error.message });
-    }
-  } else if (req.method === 'PUT') {
-    const { catalogo } = req.query;
-    const id = parseInt(catalogo);
-    const { titulo } = req.body;
-
-    try {
-      await prisma.catalogo.update({
-        where: { id },
-        data: { titulo },
-      });
-      res.status(200).json();
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
-  } else {
-    res.status(405).end(); // Method Not Allowed
   }
+  else if (req.method === 'POST') {
+    try {
+      const jsonData = await fsPromises.readFile(dataFilePath);
+      const data = JSON.parse(jsonData);
+
+
+      const { nome_catalogo } = req.body
+
+      const new_catalogo = {
+        "nome_catalogo": nome_catalogo
+      }
+
+      data.catalogos.push(new_catalogo);
+
+      const newData = JSON.stringify(data);
+
+      await fsPromises.writeFile(dataFilePath, newData);
+
+      res.status(200).json({ message: "Catalogo adiiconado!" })
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error })
+    }
+  }
+
 }

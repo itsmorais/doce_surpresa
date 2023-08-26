@@ -1,0 +1,16 @@
+{
+    "catalogos": [
+        {
+            "nome_catalogo": "Dia dos pais"
+        },
+        {
+            "nome_catalogo": "Café da manhã"
+        },
+        {
+            "nome_catalogo": "Café da manhã"
+        },
+        {
+            "nome_catalogo": "Meu teste!"
+        }
+    ]
+}
