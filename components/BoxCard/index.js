@@ -18,7 +18,7 @@ export default function BoxCard({ cestas }) {
                         <div>
                         {preco && <p id="preco">R${preco} <span id="frete"> +Frete</span></p>
                             }
-                            <Link href={`https://wa.me/5512991134425?text=Olá%20,tenho%20interesse%20no%20box%20${cesta_nome}%20de%20R$%20${preco || ""}`} target="_blank">
+                            <Link href={`https://wa.me/5512991134425?text=Olá%20,tenho%20interesse%20no%20${cesta_nome}%20de%20R$%20${preco || ""}`} target="_blank">
                                 <button id="euQuero">Eu Quero</button>
                             </Link>
                         </div>
